@@ -54,3 +54,6 @@ gem 'devise'
 gem 'figaro'
 
 gem 'bootstrap-sass'
+
+gem 'haml'
+gem "haml-rails", "~> 0.9" 
