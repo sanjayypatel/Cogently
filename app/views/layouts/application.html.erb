@@ -7,8 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <h1>Cogently</h1>
+  <nav>
+    <% if user_signed_in? %>
+      <li><%= link_to (current_user.name || current_user.email), root_path %></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+    <% end %>
+  </nav>
+  <% if flash[:notice] %>
+    <div>
+      <%= flash[:notice] %>
+    </div>
+    <% elsif flash[:error] %>
+    <div>
+      <%= flash[:error] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <%= yield %>
 </body>
 </html>
