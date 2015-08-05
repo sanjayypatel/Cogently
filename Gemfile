@@ -52,3 +52,5 @@ end
 gem 'devise'
 
 gem 'figaro'
+
+gem 'bootstrap-sass'
