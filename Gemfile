@@ -56,4 +56,8 @@ gem 'figaro'
 gem 'bootstrap-sass'
 
 gem 'haml'
-gem "haml-rails", "~> 0.9" 
+gem "haml-rails", "~> 0.9"
+
+gem 'pry-rails'
+
+gem 'faker'
