@@ -1,0 +1,89 @@
+@import "bootstrap";
+
+/******************************
+  Application Layout Styles
+******************************/
+
+body {
+  padding-top: 70px;
+}
+.site-wrapper {
+  @extend .container;
+}
+.navigation {
+  @extend .navbar;
+  @extend .navbar-default;
+  @extend .navbar-fixed-top;
+  padding-right: 2rem;
+}
+.navigation-header {
+  @extend .navbar-header
+}
+.navigation-brand {
+  @extend .navbar-brand;
+}
+.navigation-left {
+  @extend .nav;
+  @extend .navbar-nav;
+  @extend .navbar-left;
+}
+
+.navigation-right {
+  @extend .nav;
+  @extend .navbar-nav;
+  @extend .navbar-right;
+}
+
+.app-content {
+  @extend .row;
+}
+
+/******************************
+  Standard View Elements
+******************************/
+
+/* app views will use .main-content/.sidebar split or .centered-content*/
+.main-content {
+  @extend .col-md-8;
+  border-right: 1px lightgrey solid;
+}
+.sidebar {
+  @extend .col-md-4;
+}
+.centered-content {
+  @extend .col-md-6;
+  @extend .col-md-offset-3;
+}
+
+.content-header {
+  font-size: 4rem;
+  padding-bottom: 1rem;
+}
+
+.content-subheader {
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.warning-header {
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  color: red;
+}
+
+/******************************
+  Form Elements 
+******************************/
+
+.form-section {
+  @extend .form-group;
+}
+
+.enter-text {
+  @extend .form-control;
+}
+
+.submit-form {
+  @extend .btn;
+  @extend .btn-success;
+}
