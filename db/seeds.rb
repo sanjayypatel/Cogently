@@ -10,10 +10,11 @@ user = User.new(
 )
 user.skip_confirmation!
 user.save!
+organization.update_attribute(:moderator_id, user.id)
 5.times do |n|
   user = User.new(
-    name: 'Member #{n}',
-    email: Faker::Internet.email,
+    name: "Member #{n}",
+    email: "member#{n}@example.com",
     password: 'helloworld'
   )
   user.skip_confirmation!
