@@ -9,8 +9,10 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     @moderator = @organization.moderator
     @members = @organization.users
+    @membership = Membership.new
     if params[:search]
       @found_users = User.search(params[:search])
+      @query = params[:search]
     else
       @found_users = nil
     end

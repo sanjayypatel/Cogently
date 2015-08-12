@@ -15,15 +15,18 @@
   -@members.each do |member|
     %li= "#{member.name}, #{member.email}"
   %br
-  - if @found_users.count > 0
-    .content-subheader Search Results
+  - if @found_users
+    .content-subheader= "Search Results for \'#{@query}\'"
     %ul
     -@found_users.each do |found_user|
       %li
-        = "#{found_user.name}, #{found_user.email}"
-        = 
+        = form_for [@organization, @membership] do |f|
+          = "#{found_user.name}, #{found_user.email}"
+          = f.hidden_field :user_id, value: found_user.id
+          = f.submit "Invite", class: 'invite-user'
+      %br
   = form_tag edit_organization_path(@organization), method: "get" do
     .form-section
-      =text_field_tag :search, params[:search], class: 'enter-text', placeholder: 'Search users by email'
+      = text_field_tag :search, params[:search], class: 'enter-text', placeholder: 'Search users by email'
     .form-section
-      =submit_tag "Add Member", class: 'submit-form'
+      = submit_tag "Add Member", class: 'submit-form'

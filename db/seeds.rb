@@ -1,16 +1,21 @@
+# Seed Organization
 organization = Organization.new(
   name: 'New Organization'
 )
 organization.save!
-user = User.new(
+
+# Seed Member User
+member_user = User.new(
   name: 'Member User',
   email: 'member@example.com',
-  password: 'helloworld',
-  organization: organization
+  password: 'helloworld'
 )
-user.skip_confirmation!
-user.save!
-organization.update_attribute(:moderator_id, user.id)
+member_user.skip_confirmation!
+member_user.save!
+# Set moderator for seeded organization
+organization.update_attribute(:moderator_id, member_user.id)
+
+# Seed more Users
 5.times do |n|
   user = User.new(
     name: "Member #{n}",
@@ -21,6 +26,16 @@ organization.update_attribute(:moderator_id, user.id)
   user.save!
 end
 
+#Seed Membership
+membership = Membership.new(
+  confirmed: true,
+  user: member_user,
+  organization: organization
+)
+membership.save!
+
+
 puts "Finished Seeding"
 puts "#{User.count} users created."
 puts "#{Organization.count} organizations created."
+puts "#{Membership.count} memberships created."
