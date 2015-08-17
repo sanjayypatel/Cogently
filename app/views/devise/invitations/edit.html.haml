@@ -1,0 +1,17 @@
+.content-header= t 'devise.invitations.edit.header'
+= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
+  = devise_error_messages!
+  = f.hidden_field :invitation_token
+  .form-section
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: 'enter-text', autocomplete: "off"
+  .form-section
+    = f.label :password
+    %br/
+    = f.password_field :password, class: 'enter-text'
+  .form-section
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, class: 'enter-text', autocomplete: "off"
+  .form-section
+    = f.submit t("devise.invitations.edit.submit_button"), class: 'submit-form'
