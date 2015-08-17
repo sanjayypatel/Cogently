@@ -1,0 +1,19 @@
+- if @membership && !@membership.confirmed
+  .content-header Notice
+  .content-subheader= "You have been invited to join #{@membership.organization.name}."
+  = form_for [@membership.organization, @membership] do |f|
+    = f.hidden_field :confirmed, value: true
+    = f.submit "Confirm the Invitation", class: 'submit-form'
+  %br
+.main-content
+  .content-header= "#{current_user.name}'s Profile"
+  - if @organization
+    .content-subheader= "Member of #{@organization.name}"
+    - if @organization.moderator == current_user
+      = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'
+    - else
+      = link_to "View Organization", organization_path(@organization), class: 'submit-form'
+  .content-subheader= "Email"
+  %p= current_user.email
+.sidebar
+  =link_to "Edit Profile", edit_user_registration_path(current_user), class: 'edit-record'

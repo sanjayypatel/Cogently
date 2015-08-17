@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  scope :are_confirmed_members, -> { joins(:memberships).where("'memberships'.'confirmed' = ?", true)}
+
   def self.search(query)
     where("email like ?", "%#{query}%") 
   end

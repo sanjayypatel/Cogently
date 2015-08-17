@@ -2,13 +2,14 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
+    @members = @organization.users.are_confirmed_members
     @moderator = @organization.moderator
   end
 
   def edit
     @organization = Organization.find(params[:id])
     @moderator = @organization.moderator
-    @members = @organization.users
+    @members = @organization.users.are_confirmed_members
     @membership = Membership.new
     if params[:search]
       @found_users = User.search(params[:search])

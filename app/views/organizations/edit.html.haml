@@ -23,6 +23,7 @@
         = form_for [@organization, @membership] do |f|
           = "#{found_user.name}, #{found_user.email}"
           = f.hidden_field :user_id, value: found_user.id
+          = f.hidden_field :confirmed, value: false
           = f.submit "Invite", class: 'invite-user'
       %br
   = form_tag edit_organization_path(@organization), method: "get" do

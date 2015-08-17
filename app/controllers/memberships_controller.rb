@@ -12,10 +12,20 @@ class MembershipsController < ApplicationController
     redirect_to edit_organization_path(@organization)
   end
 
+  def update
+    @membership = Membership.find(params[:id])
+    if @membership.update_attributes(membership_params)
+      flash[:notice] = "Membership confirmed."
+    else
+      flash[:error] = "There was an error updating membership."
+    end
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def membership_params
-    params.require(:membership).permit(:user_id)
+    params.require(:membership).permit(:user_id, :confirmed)
   end
 
 end
