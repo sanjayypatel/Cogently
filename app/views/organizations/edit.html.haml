@@ -29,8 +29,5 @@
     - if @found_users.count == 0
       %p Didn't find who you're looking for? Invite them to join Cogently:
       = link_to "Invite", new_user_invitation_path, class: 'invite-user'
-  = form_tag edit_organization_path(@organization), method: "get" do
-    .form-section
-      = text_field_tag :search, params[:search], class: 'enter-text', placeholder: 'Search users by email'
-    .form-section
-      = submit_tag "Find User", class: 'submit-form'
+      %br
+  = render partial: 'memberships/search', locals: {organization: @organization}

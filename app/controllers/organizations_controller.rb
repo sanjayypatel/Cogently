@@ -4,6 +4,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     @members = @organization.users.are_confirmed_members
     @moderator = @organization.moderator
+    if user_signed_in?
+      @membership = current_user.memberships.first
+    end
   end
 
   def edit

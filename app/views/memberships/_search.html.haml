@@ -1,0 +1,6 @@
+= form_tag edit_organization_path(organization), method: "get" do
+  .content-subheader Search
+  .form-section
+    = text_field_tag :search, params[:search], class: 'enter-text', placeholder: 'Search users by email'
+  .form-section
+    = submit_tag "Find User", class: 'submit-form'

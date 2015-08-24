@@ -1,11 +1,6 @@
-- if @membership && !@membership.confirmed
-  .content-header Notice
-  .content-subheader= "You have been invited to join #{@membership.organization.name}."
-  = form_for [@membership.organization, @membership] do |f|
-    = f.hidden_field :confirmed, value: true
-    = f.submit "Confirm the Invitation", class: 'submit-form'
-  %br
 .main-content
+  - if @membership && !@membership.confirmed
+    = render partial: 'memberships/notice', locals: {membership: @membership}
   .content-header= "#{current_user.name}'s Profile"
   - if @organization
     .content-subheader= "Member of #{@organization.name}"
