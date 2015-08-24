@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Seed Organization
+organization = Organization.new(
+  name: 'New Organization'
+)
+organization.save!
+
+# Seed Member User
+member_user = User.new(
+  name: 'Member User',
+  email: 'member@example.com',
+  password: 'helloworld'
+)
+member_user.skip_confirmation!
+member_user.save!
+# Set moderator for seeded organization
+organization.update_attribute(:moderator_id, member_user.id)
+
+# Seed more Users
+5.times do |n|
+  user = User.new(
+    name: "Member #{n}",
+    email: "member#{n}@example.com",
+    password: 'helloworld'
+  )
+  user.skip_confirmation!
+  user.save!
+end
+
+#Seed Membership
+membership = Membership.new(
+  confirmed: true,
+  user: member_user,
+  organization: organization
+)
+membership.save!
+
+
+puts "Finished Seeding"
+puts "#{User.count} users created."
+puts "#{Organization.count} organizations created."
+puts "#{Membership.count} memberships created."

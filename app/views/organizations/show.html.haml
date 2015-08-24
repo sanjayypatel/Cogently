@@ -1,0 +1,11 @@
+.main-content
+  .content-header
+    = @organization.name
+  .content-subheader Moderator:
+  = @moderator.name
+  .content-header Members
+  %ul
+  -@members.each do |member|
+    %li= "#{member.name}, #{member.email}"
+.sidebar
+  = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'

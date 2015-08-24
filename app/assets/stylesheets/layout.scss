@@ -87,3 +87,14 @@ body {
   @extend .btn;
   @extend .btn-success;
 }
+
+.edit-record {
+  @extend .btn;
+  @extend .btn-default;
+}
+
+.invite-user {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+}
