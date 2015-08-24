@@ -27,9 +27,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    puts "PARAMS!!!"
-    puts params
-    puts "------"
     params.require(:user).permit(:name, :role)
   end
 end
