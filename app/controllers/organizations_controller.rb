@@ -2,6 +2,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
+    authorize @organization
     @members = @organization.users.are_confirmed_members
     @moderator = @organization.moderator
     if user_signed_in?
@@ -11,6 +12,7 @@ class OrganizationsController < ApplicationController
 
   def edit
     @organization = Organization.find(params[:id])
+    authorize @organization
     @moderator = @organization.moderator
     @members = @organization.users.are_confirmed_members
     @membership = Membership.new
@@ -24,6 +26,7 @@ class OrganizationsController < ApplicationController
 
   def update
     @organization = Organization.find(params[:id])
+    authorize @organization
     if @organization.update_attributes(organization_params)
       flash[:notice] = "Organization updated."
       redirect_to organization_path
