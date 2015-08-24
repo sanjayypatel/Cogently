@@ -50,6 +50,7 @@ group :development, :test do
 end
 
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'figaro'
 
