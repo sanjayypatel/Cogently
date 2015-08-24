@@ -12,7 +12,7 @@ class OrganizationsController < ApplicationController
     @members = @organization.users.are_confirmed_members
     @membership = Membership.new
     if params[:search]
-      @found_users = User.search(params[:search])
+      @found_users = User.search(params[:search]).all_except(current_user).exclude_members(@members)
       @query = params[:search]
     else
       @found_users = nil
