@@ -87,3 +87,9 @@ body {
   @extend .btn;
   @extend .btn-success;
 }
+
+.invite-user {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+}
