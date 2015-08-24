@@ -8,7 +8,7 @@
   .content-header Members
   %ul
   -@members.each do |member|
-    %li= "#{member.name}, #{member.email}"
+    %li= "#{member.name}, #{member.email}, #{member.role.capitalize}"
 .sidebar
   - if policy(@organization).edit?
     = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'

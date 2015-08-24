@@ -98,3 +98,8 @@ body {
   @extend .btn-xs;
   @extend .btn-default;
 }
+.update-user-role {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-success;
+}

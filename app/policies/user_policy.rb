@@ -1,15 +1,15 @@
 class UserPolicy < ApplicationPolicy
 
   def show?
-    record.id == user.id
+    record == user
   end
 
   def edit?
-    show?
+    show? || record.organizations.first.moderator == user
   end
 
   def update?
-    show?
+    show? || record.organizations.first.moderator == user
   end
 
 end
