@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
 
   POSSIBLE_ROLES = {'Manager' => 'manager', 'Staff' => 'staff'}
 
-  has_many :memberships
-  has_many :organizations, through: :memberships
+  has_one :membership
+  has_one :organization, through: :membership
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -11,7 +11,23 @@ class User < ActiveRecord::Base
 
   scope :all_except, -> (user){ where.not(id: user) }
   scope :exclude_members, -> (members){where.not(id: members.pluck(:id))}
-  scope :are_confirmed_members, -> { joins(:memberships).where("'memberships'.'confirmed' = ?", true).distinct}
+  scope :are_confirmed_members, -> { joins(:membership).where("'memberships'.'confirmed' = ?", true).distinct}
+
+  def is_confirmed_member?
+    if self.membership && self.membership.confirmed
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_unconfirmed_member?
+    if self.membership && !self.membership.confirmed
+      return true
+    else
+      return false
+    end
+  end
 
   def self.search(query)
     where("email like ?", "%#{query}%")

@@ -5,11 +5,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def edit?
-    show? || record.organizations.first.moderator == user
+    show? || record.organization.moderator == user
   end
 
   def update?
-    show? || record.organizations.first.moderator == user
+    show? || record.organization.moderator == user
   end
 
 end

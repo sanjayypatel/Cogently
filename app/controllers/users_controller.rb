@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    @membership = current_user.memberships.first
-    if @membership && @membership.confirmed
-      @organization = current_user.organizations.first
+    @membership = @user.membership
+    if @user.is_confirmed_member?
+      @organization = @user.organization
     else
       @organization = nil
     end

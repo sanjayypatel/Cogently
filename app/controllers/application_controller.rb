@@ -7,9 +7,8 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def after_sign_in_path_for(resource_or_scope)
-    @membership = current_user.memberships.are_confirmed.first
-    if @membership
-      organization_path(current_user.organizations.first)
+    if current_user.is_confirmed_member?
+      organization_path(current_user.organization)
     else
       user_path(current_user)
     end

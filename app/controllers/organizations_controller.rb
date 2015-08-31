@@ -6,7 +6,7 @@ class OrganizationsController < ApplicationController
     @members = @organization.users.are_confirmed_members
     @moderator = @organization.moderator
     if user_signed_in?
-      @membership = current_user.memberships.first
+      @membership = current_user.membership
     end
   end
 
