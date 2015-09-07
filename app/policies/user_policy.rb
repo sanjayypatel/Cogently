@@ -12,4 +12,8 @@ class UserPolicy < ApplicationPolicy
     show? || record.organization.moderator == user
   end
 
+  def invite?
+    true
+  end
+
 end

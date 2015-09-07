@@ -54,7 +54,7 @@ gem 'devise_invitable'
 
 gem 'figaro'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.5'
 
 gem 'haml'
 gem "haml-rails", "~> 0.9"

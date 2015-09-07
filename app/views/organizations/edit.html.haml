@@ -25,10 +25,10 @@
     %ul
     - @found_users.each do |found_user|
       %li
-        = form_for [@organization, @membership] do |f|
+        = form_for found_user, url: invite_user_path, method: :patch do |f|
           = "#{found_user.name}, #{found_user.email}"
-          = f.hidden_field :user_id, value: found_user.id
-          = f.hidden_field :confirmed, value: false
+          = f.hidden_field :id, value: found_user.id
+          = f.hidden_field :invited_organization_id, value: @organization.id
           = f.submit "Invite", class: 'invite-user'
       %br
     - if @found_users.count == 0
