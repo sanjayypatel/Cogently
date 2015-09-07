@@ -5,11 +5,13 @@
       = f.label :name
       = f.text_field :name, autofocus: true, class: 'enter-text'
     .form-section
+      = f.submit "Save", class: 'submit-form'
+  = form_for @organization do |f|
+    .form-section
       = f.label :moderator
       = f.collection_select(:moderator_id, @members, :id, :name )
     .form-section
-      = f.submit "Save", class: 'submit-form'
-.sidebar
+      = f.submit 'Change Moderator', class: 'submit-form', data: { confirm: 'Are you sure? You will not be able to edit this organization any more.' }
   .content-header Members
   %ul
   -@members.each do |member|
@@ -19,8 +21,8 @@
       = f.select :role, options_for_select(User::POSSIBLE_ROLES, member.role) 
       = f.submit "Update", class: 'update-user-role'
     %br
-  %br
-  - if @invited_users
+.sidebar
+  - if @invited_users.count > 0
     .content-subheader= "Pending Invited Users"
     %ul
     - @invited_users.each do |invited_user|
@@ -38,8 +40,7 @@
           = f.hidden_field :invited_organization_id, value: @organization.id
           = f.submit "Invite", class: 'invite-user'
       %br
-    - if @found_users.count == 0
-      %p Didn't find who you're looking for? Invite them to join Cogently:
-      = link_to "Invite", new_user_invitation_path, class: 'invite-user'
-      %br
+    %p Didn't find who you're looking for? Invite them to join Cogently:
+    = link_to "Invite", new_user_invitation_path, class: 'invite-user'
+    %br
   = render partial: 'memberships/search', locals: {organization: @organization}

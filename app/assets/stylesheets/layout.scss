@@ -96,7 +96,7 @@ body {
 .invite-user {
   @extend .btn;
   @extend .btn-xs;
-  @extend .btn-default;
+  @extend .btn-success;
 }
 .update-user-role {
   @extend .btn;

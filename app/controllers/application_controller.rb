@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:accept_invitation) << :name
+    devise_parameter_sanitizer.for(:accept_invitation) << :invited_organization_id
   end
 
   private

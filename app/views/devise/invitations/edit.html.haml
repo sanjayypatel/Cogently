@@ -3,6 +3,9 @@
   = devise_error_messages!
   = f.hidden_field :invitation_token
   .form-section
+    = f.label :email
+    = f.email_field :email, class: 'enter-text', placeholder: resource.email, readonly: true
+  .form-section
     = f.label :name
     = f.text_field :name, autofocus: true, class: 'enter-text', autocomplete: "off"
   .form-section
