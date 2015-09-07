@@ -5,11 +5,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
+    if @user.invited_organization_id
+      @invited_organization = Organization.find(@user.invited_organization_id)
+    end
     @membership = @user.membership
-    if @user.is_confirmed_member?
-      @organization = @user.organization
-    else
+    if @user.has_pending_invitation?
       @organization = nil
+    else
+      @organization = @user.organization
     end
   end
 
@@ -28,9 +31,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:user][:id])
     authorize @user
     if @user.update_attributes(user_params)
-      flash[:notice] = "User invited!"
+      flash[:notice] = 'User invited.'
     else
-      flash[:error] = "Invalid user information"
+      flash[:error] = 'Invalid user information'
     end
     redirect_to request.referer || edit_user_registration_path
   end

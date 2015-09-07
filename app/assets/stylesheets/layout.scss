@@ -45,10 +45,10 @@ body {
 /* app views will use .main-content/.sidebar split or .centered-content*/
 .main-content {
   @extend .col-md-8;
-  border-right: 1px lightgrey solid;
 }
 .sidebar {
   @extend .col-md-4;
+  border-left: 1px lightgrey solid;
 }
 .centered-content {
   @extend .col-md-6;

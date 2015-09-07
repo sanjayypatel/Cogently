@@ -12,19 +12,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   scope :all_except, -> (user){ where.not(id: user) }
-  scope :exclude_members, -> (members){where.not(id: members.pluck(:id))}
-  scope :are_confirmed_members, -> { joins(:membership).where("'memberships'.'confirmed' = ?", true).distinct}
+  scope :exclude_users, -> (users){where.not(id: users.pluck(:id))}
+  scope :invited_users, -> (organization){where(invited_organization_id: organization.id)}
 
-  def is_confirmed_member?
-    if self.membership && self.membership.confirmed
-      return true
+  def has_pending_invitation?
+    if self.invited_organization_id && self.membership.nil?
+      true
     else
-      return false
+      false
     end
   end
 
-  def is_unconfirmed_member?
-    if self.membership && !self.membership.confirmed
+  def is_confirmed_member?
+    if self.membership
       return true
     else
       return false

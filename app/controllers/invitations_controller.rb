@@ -10,7 +10,7 @@ class InvitationsController < Devise::InvitationsController
 
   def accept_resource
     resource = resource_class.accept_invitation!(update_resource_params)
-    @membership = Membership.new(organization: u.invited_organization, user: u, confirmed: true)
+    @membership = Membership.new(organization: u.invited_organization, user: u)
     @membership.save
     resource
   end

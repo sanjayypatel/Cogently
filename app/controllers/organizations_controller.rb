@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   def show
     @organization = Organization.find(params[:id])
     authorize @organization
-    @members = @organization.users.are_confirmed_members
+    @members = @organization.users
     @moderator = @organization.moderator
     if user_signed_in?
       @membership = current_user.membership
@@ -14,10 +14,10 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
     authorize @organization
     @moderator = @organization.moderator
-    @members = @organization.users.are_confirmed_members
-    @membership = Membership.new
+    @members = @organization.users
+    @invited_users = User.invited_users(@organization)
     if params[:search]
-      @found_users = User.search(params[:search]).all_except(current_user).exclude_members(@members)
+      @found_users = User.search(params[:search]).all_except(current_user).exclude_users(@members).exclude_users(@invited_users)
       @query = params[:search]
     else
       @found_users = nil

@@ -3,7 +3,6 @@ class CreateMemberships < ActiveRecord::Migration
     create_table :memberships do |t|
       t.references :user, index: true, foreign_key: true
       t.references :organization, index: true, foreign_key: true
-      t.boolean :confirmed, :default => false
 
       t.timestamps null: false
     end

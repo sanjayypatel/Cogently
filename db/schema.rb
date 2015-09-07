@@ -16,9 +16,8 @@ ActiveRecord::Schema.define(version: 20150906170008) do
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "organization_id"
-    t.boolean  "confirmed",       default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id"

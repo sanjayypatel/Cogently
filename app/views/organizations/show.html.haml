@@ -1,6 +1,4 @@
 .main-content
-  - if current_user.is_unconfirmed_member?
-    = render partial: 'memberships/notice', locals: {membership: @membership}
   .content-header
     = @organization.name
   .content-subheader Moderator:

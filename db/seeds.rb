@@ -33,13 +33,11 @@ first_organization.update_attribute(:moderator_id, first_user.id)
 second_organization.update_attribute(:moderator_id, second_user.id)
 #Seed Membership
 membership = Membership.new(
-  confirmed: true,
   user: first_user,
   organization: first_organization
 )
 membership.save!
 membership = Membership.new(
-  confirmed: true,
   user: second_user,
   organization: second_organization
 )
@@ -55,7 +53,6 @@ membership.save!
   user.skip_confirmation!
   user.save!
   membership = Membership.new(
-    confirmed: true,
     user: user,
     organization: organizations.sample
   )

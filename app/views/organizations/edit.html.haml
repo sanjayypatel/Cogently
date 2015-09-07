@@ -20,6 +20,13 @@
       = f.submit "Update", class: 'update-user-role'
     %br
   %br
+  - if @invited_users
+    .content-subheader= "Pending Invited Users"
+    %ul
+    - @invited_users.each do |invited_user|
+      %li= "#{invited_user.name}, #{invited_user.email}"
+      %br
+  %br
   - if @found_users
     .content-subheader= "Search Results for \'#{@query}\'"
     %ul
