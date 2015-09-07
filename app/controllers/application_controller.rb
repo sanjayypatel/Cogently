@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def after_sign_in_path_for(resource_or_scope)
-    @organization = current_user.organizations.first
-    if @organization
-      organization_path(@organization)
+    @membership = current_user.memberships.are_confirmed.first
+    if @membership
+      organization_path(current_user.organizations.first)
     else
       user_path(current_user)
     end
@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:accept_invitation) << :name
   end
 

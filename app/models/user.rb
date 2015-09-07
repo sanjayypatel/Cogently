@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  POSSIBLE_ROLES = {'Manager' => 'manager', 'Staff' => 'staff'}
+
   has_many :memberships
   has_many :organizations, through: :memberships
   # Include default devise modules. Others available are:
@@ -12,6 +15,14 @@ class User < ActiveRecord::Base
 
   def self.search(query)
     where("email like ?", "%#{query}%")
+  end
+
+  def manager?
+    role == 'manager'
+  end
+
+  def staff?
+    role == 'staff'
   end
 
 end

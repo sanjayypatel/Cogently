@@ -13,7 +13,12 @@
   .content-header Members
   %ul
   -@members.each do |member|
-    %li= "#{member.name}, #{member.email}"
+    %li= "#{member.name}, #{member.email}, #{member.role.capitalize}"
+    = form_for member, url: user_path(member), method: :patch do |f|
+      = f.label :role
+      = f.select :role, options_for_select(User::POSSIBLE_ROLES, member.role) 
+      = f.submit "Update", class: 'update-user-role'
+    %br
   %br
   - if @found_users
     .content-subheader= "Search Results for \'#{@query}\'"

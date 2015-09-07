@@ -8,7 +8,8 @@ organization.save!
 member_user = User.new(
   name: 'Member User',
   email: 'member@example.com',
-  password: 'helloworld'
+  password: 'helloworld',
+  role: 'manager'
 )
 member_user.skip_confirmation!
 member_user.save!
@@ -20,7 +21,8 @@ organization.update_attribute(:moderator_id, member_user.id)
   user = User.new(
     name: "Member #{n}",
     email: "member#{n}@example.com",
-    password: 'helloworld'
+    password: 'helloworld',
+    role: 'staff'
   )
   user.skip_confirmation!
   user.save!
