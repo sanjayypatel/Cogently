@@ -62,3 +62,5 @@ gem "haml-rails", "~> 0.9"
 gem 'pry-rails'
 
 gem 'faker'
+
+gem 'pundit'

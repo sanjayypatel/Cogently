@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @user = User.find(params[:id])
+    authorize @user
     @membership = current_user.memberships.first
     if @membership && @membership.confirmed
       @organization = current_user.organizations.first
@@ -12,6 +14,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    authorize @user
     if current_user.update_attributes(user_params)
       flash[:notice] = "User information updated"
     else
