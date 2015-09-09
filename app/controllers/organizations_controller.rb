@@ -15,9 +15,9 @@ class OrganizationsController < ApplicationController
     authorize @organization
     @moderator = @organization.moderator
     @members = @organization.users
-    @invited_users = User.invited_users(@organization)
+    @invited_users = @organization.invitees
     if params[:search]
-      @found_users = User.search(params[:search]).all_except(current_user).exclude_users(@members).exclude_users(@invited_users)
+      @found_users = @organization.search_for_invitable_users(params[:search])
       @query = params[:search]
     else
       @found_users = nil

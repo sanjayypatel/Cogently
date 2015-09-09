@@ -11,10 +11,6 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  scope :all_except, -> (user){ where.not(id: user) }
-  scope :exclude_users, -> (users){where.not(id: users.pluck(:id))}
-  scope :invited_users, -> (organization){where(invited_organization_id: organization.id)}
-
   def has_pending_invitation?
     if self.invited_organization_id && self.membership.nil?
       true
@@ -29,10 +25,6 @@ class User < ActiveRecord::Base
     else
       return false
     end
-  end
-
-  def self.search(query)
-    where("email like ?", "%#{query}%")
   end
 
   def manager?

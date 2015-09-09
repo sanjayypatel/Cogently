@@ -12,15 +12,26 @@
       = f.collection_select(:moderator_id, @members, :id, :name )
     .form-section
       = f.submit 'Change Moderator', class: 'submit-form', data: { confirm: 'Are you sure? You will not be able to edit this organization any more.' }
-  .content-header Members
-  %ul
+  .content-header Memberss
+  .table-header
+    .col-md-3
+      .content-subheader= 'Name'
+    .col-md-3
+      .content-subheader= 'Email'
+    .col-md-6
+      .content-subheader= 'Role'
   -@members.each do |member|
-    %li= "#{member.name}, #{member.email}, #{member.role.capitalize}"
-    = form_for member, url: user_path(member), method: :patch do |f|
-      = f.label :role
-      = f.select :role, options_for_select(User::POSSIBLE_ROLES, member.role) 
-      = f.submit "Update", class: 'update-user-role'
-    %br
+    .table-row
+      .small-table-col
+        = "#{member.name}"
+      .small-table-col
+        = "#{member.email}"
+      .large-table-col
+        = form_for member, url: user_path(member), method: :patch do |f|
+          = f.label :role
+          = f.select :role, options_for_select(User::POSSIBLE_ROLES, member.role) 
+          = f.submit "Update", class: 'update-user-role'
+        %br
 .sidebar
   - if @invited_users.count > 0
     .content-subheader= "Pending Invited Users"

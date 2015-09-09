@@ -71,6 +71,28 @@ body {
   color: red;
 }
 
+.table-header {
+  @extend .row;
+  border-bottom: 1px lightgrey solid;
+  margin-bottom: 10px;;
+}
+
+.small-table-col {
+  @extend .col-md-3;
+}
+
+.large-table-col {
+  @extend .col-md-6;
+}
+
+.table-row {
+  @extend .row;
+  padding: 15px 0 0 0;
+}
+.table-row:nth-child(odd) {
+  background: lightgrey;
+}
+
 /******************************
   Form Elements 
 ******************************/
