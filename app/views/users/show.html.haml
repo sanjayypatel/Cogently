@@ -1,6 +1,6 @@
 .main-content
   - if current_user.has_pending_invitation?
-    = render partial: 'organizations/notice', locals: {membership: Membership.new, invited_organization: @invited_organization }
+    = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
   .content-header= "#{current_user.name}'s Profile"
   - if @organization
     .content-subheader= "Member of #{@organization.name}"

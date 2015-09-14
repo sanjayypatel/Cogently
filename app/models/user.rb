@@ -12,11 +12,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   def has_pending_invitation?
-    if self.invited_organization_id && self.membership.nil?
-      true
-    else
-      false
-    end
+    return !self.invited_organization_id.nil?
   end
 
   def is_confirmed_member?

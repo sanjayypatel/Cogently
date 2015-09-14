@@ -5,13 +5,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    if @user.invited_organization_id
+    if @user.has_pending_invitation?
       @invited_organization = Organization.find(@user.invited_organization_id)
     end
-    @membership = @user.membership
-    if @user.has_pending_invitation?
+    if @user.membership.nil?
+      @membership = Membership.new
       @organization = nil
     else
+      @membership = @user.membership
       @organization = @user.organization
     end
   end
