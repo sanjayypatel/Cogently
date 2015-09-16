@@ -16,4 +16,8 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def deny?
+    show?
+  end
+
 end

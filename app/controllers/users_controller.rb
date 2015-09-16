@@ -39,6 +39,17 @@ class UsersController < ApplicationController
     redirect_to request.referer || edit_user_registration_path
   end
 
+  def deny
+    @user = User.find(params[:id])
+    authorize @user
+    if @user.update_attribute(:invited_organization_id, nil)
+      flash[:notice] = 'Invitiation turned down.'
+    else
+      flash[:error] = 'An error occurred, please try again.'
+    end
+    redirect_to request.referer || show_user_registration_path
+  end
+
   private
 
   def user_params
