@@ -16,11 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def is_confirmed_member?
-    if self.membership
-      return true
-    else
-      return false
-    end
+    return !self.membership.nil?
   end
 
   def manager?

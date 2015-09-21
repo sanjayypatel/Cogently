@@ -1,12 +1,27 @@
 .main-content
-  .content-header
+  .content-title
     = @organization.name
-  .content-subheader Moderator:
-  = "#{@moderator.name}, #{@moderator.email}"
-  .content-header Members
-  %ul
-  -@members.each do |member|
-    %li= "#{member.name}, #{member.email}, #{member.role.capitalize}"
+  .profile-section
+    .content-header Moderator:
+    .moderator-header= "#{@moderator.name}"
+    .moderator-header= "#{@moderator.email}"
+  .profile-section
+    .content-header Members
+    .table-header
+      .col-md-3
+        .content-subheader= 'Name'
+      .col-md-3
+        .content-subheader= 'Email'
+      .col-md-6
+        .content-subheader= 'Role'
+    -@members.each do |member|
+      .table-row
+        .small-table-col
+          = "#{member.name}"
+        .small-table-col
+          = "#{member.email}"
+        .large-table-col
+          = "#{member.role.capitalize}"
 .sidebar
   - if policy(@organization).edit?
     = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'

@@ -54,22 +54,36 @@ body {
   @extend .col-md-6;
   @extend .col-md-offset-3;
 }
-
+.content-title {
+  font-size: 5rem;
+  padding-bottom: 2rem;
+}
 .content-header {
   font-size: 4rem;
   padding-bottom: 1rem;
 }
-
 .content-subheader {
   font-size: 2rem;
   padding-bottom: 0.5rem;
 }
-
+.moderator-header {
+  font-size: 2rem;
+  padding-left: 2rem;
+}
 .warning-header {
   font-size: 3rem;
   padding-bottom: 1rem;
   color: red;
 }
+.profile-section {
+  margin: 1rem 0;
+  padding: 1rem;
+  margin: 0 1rem;
+}
+
+/******************************
+  Table Elements
+******************************/
 
 .table-header {
   @extend .row;
@@ -87,10 +101,16 @@ body {
 
 .table-row {
   @extend .row;
-  padding: 15px 0 0 0;
+  padding: 15px 0;
 }
+
 .table-row:nth-child(odd) {
   background: lightgrey;
+}
+
+.in-table-form {
+  @extend .form-group;
+  margin-bottom: 0;
 }
 
 /******************************
@@ -114,9 +134,16 @@ body {
   @extend .btn;
   @extend .btn-danger;
 }
+
 .edit-record {
   @extend .btn;
   @extend .btn-default;
+}
+
+.view-record {
+  @extend .btn;
+  @extend .btn-default;
+  margin-bottom: 1rem;
 }
 
 .invite-user {

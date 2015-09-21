@@ -1,38 +1,43 @@
 .main-content
-  .content-header Edit Organization
-  = form_for @organization do |f|
-    .form-section
-      = f.label :name
-      = f.text_field :name, autofocus: true, class: 'enter-text'
-    .form-section
-      = f.submit "Save", class: 'submit-form'
-  = form_for @organization do |f|
-    .form-section
-      = f.label :moderator
-      = f.collection_select(:moderator_id, @members, :id, :name )
-    .form-section
-      = f.submit 'Change Moderator', class: 'submit-form', data: { confirm: 'Are you sure? You will not be able to edit this organization any more.' }
-  .content-header Memberss
-  .table-header
-    .col-md-3
-      .content-subheader= 'Name'
-    .col-md-3
-      .content-subheader= 'Email'
-    .col-md-6
-      .content-subheader= 'Role'
-  -@members.each do |member|
-    .table-row
-      .small-table-col
-        = "#{member.name}"
-      .small-table-col
-        = "#{member.email}"
-      .large-table-col
-        = form_for member, url: user_path(member), method: :patch do |f|
-          = f.label :role
-          = f.select :role, options_for_select(User::POSSIBLE_ROLES, member.role) 
-          = f.submit "Update", class: 'update-user-role'
-        %br
+  .content-title Edit Organization
+  .profile-section
+    .content-header Organization Info
+    = form_for @organization do |f|
+      .form-section
+        = f.label :name
+        = f.text_field :name, autofocus: true, class: 'enter-text'
+      .form-section
+        = f.submit "Save", class: 'submit-form'
+    = form_for @organization do |f|
+      .form-section
+        = f.label :moderator
+        = f.collection_select(:moderator_id, @members, :id, :name )
+      .form-section
+        = f.submit 'Change Moderator', class: 'submit-form', data: { confirm: 'Are you sure? You will not be able to edit this organization any more.' }
+  .profile-section
+    .content-header Members
+    .table-header
+      .col-md-3
+        .content-subheader= 'Name'
+      .col-md-3
+        .content-subheader= 'Email'
+      .col-md-6
+        .content-subheader= 'Role'
+    -@members.each do |member|
+      .table-row
+        .small-table-col
+          = "#{member.name}"
+        .small-table-col
+          = "#{member.email}"
+        .large-table-col
+          = form_for member, url: user_path(member), method: :patch do |f|
+            .in-table-form
+              = f.label :role
+              = f.select :role, options_for_select(User::POSSIBLE_ROLES, member.role) 
+              = f.submit "Update", class: 'update-user-role'
+          %br
 .sidebar
+  = link_to "View Organization", organization_path, class: 'view-record'
   - if @invited_users.count > 0
     .content-subheader= "Pending Invited Users"
     %ul
