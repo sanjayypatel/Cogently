@@ -16,7 +16,9 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
+    @user = User.find(membership_params[:user_id])
     if @membership.update_attributes(membership_params)
+      @user.update_attribute(:invited_organization_id, nil)
       flash[:notice] = "Membership updated."
     else
       flash[:error] = "There was an error updating membership."
@@ -27,7 +29,7 @@ class MembershipsController < ApplicationController
   private
 
   def membership_params
-    params.require(:membership).permit(:user_id)
+    params.require(:membership).permit(:user_id, :organization_id)
   end
 
 end

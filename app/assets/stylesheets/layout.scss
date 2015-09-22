@@ -71,6 +71,28 @@ body {
   color: red;
 }
 
+.table-header {
+  @extend .row;
+  border-bottom: 1px lightgrey solid;
+  margin-bottom: 10px;;
+}
+
+.small-table-col {
+  @extend .col-md-3;
+}
+
+.large-table-col {
+  @extend .col-md-6;
+}
+
+.table-row {
+  @extend .row;
+  padding: 15px 0 0 0;
+}
+.table-row:nth-child(odd) {
+  background: lightgrey;
+}
+
 /******************************
   Form Elements 
 ******************************/
@@ -88,6 +110,10 @@ body {
   @extend .btn-success;
 }
 
+.deny-invitation {
+  @extend .btn;
+  @extend .btn-danger;
+}
 .edit-record {
   @extend .btn;
   @extend .btn-default;
@@ -102,4 +128,13 @@ body {
   @extend .btn;
   @extend .btn-xs;
   @extend .btn-success;
+}
+
+/******************************
+  Notice Elements 
+******************************/
+
+.invitation-notice {
+  padding: 2rem;
+  border: 1px lightgreen solid;
 }
