@@ -1,7 +1,7 @@
 class OrganizationPolicy < ApplicationPolicy
 
   def show?
-    record.users.are_confirmed_members.include?(user)
+    record.users.include?(user)
   end
 
   def edit?

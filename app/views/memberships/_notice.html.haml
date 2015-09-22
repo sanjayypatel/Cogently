@@ -1,6 +1,0 @@
-.content-header Notice
-.content-subheader= "You have been invited to join #{membership.organization.name}."
-= form_for [membership.organization, membership] do |f|
-  = f.hidden_field :confirmed, value: true
-  = f.submit "Confirm the Invitation", class: 'submit-form'
-%br

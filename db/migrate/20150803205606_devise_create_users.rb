@@ -32,6 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Customization
       t.string :name
+      t.string :role, default: 'staff'
 
       t.timestamps
     end

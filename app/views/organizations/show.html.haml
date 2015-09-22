@@ -1,6 +1,4 @@
 .main-content
-  - if @membership && !@membership.confirmed
-    = render partial: 'memberships/notice', locals: {membership: @membership}
   .content-header
     = @organization.name
   .content-subheader Moderator:

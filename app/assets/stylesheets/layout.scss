@@ -45,10 +45,10 @@ body {
 /* app views will use .main-content/.sidebar split or .centered-content*/
 .main-content {
   @extend .col-md-8;
-  border-right: 1px lightgrey solid;
 }
 .sidebar {
   @extend .col-md-4;
+  border-left: 1px lightgrey solid;
 }
 .centered-content {
   @extend .col-md-6;
@@ -71,6 +71,28 @@ body {
   color: red;
 }
 
+.table-header {
+  @extend .row;
+  border-bottom: 1px lightgrey solid;
+  margin-bottom: 10px;;
+}
+
+.small-table-col {
+  @extend .col-md-3;
+}
+
+.large-table-col {
+  @extend .col-md-6;
+}
+
+.table-row {
+  @extend .row;
+  padding: 15px 0 0 0;
+}
+.table-row:nth-child(odd) {
+  background: lightgrey;
+}
+
 /******************************
   Form Elements 
 ******************************/
@@ -88,6 +110,10 @@ body {
   @extend .btn-success;
 }
 
+.deny-invitation {
+  @extend .btn;
+  @extend .btn-danger;
+}
 .edit-record {
   @extend .btn;
   @extend .btn-default;
@@ -96,10 +122,19 @@ body {
 .invite-user {
   @extend .btn;
   @extend .btn-xs;
-  @extend .btn-default;
+  @extend .btn-success;
 }
 .update-user-role {
   @extend .btn;
   @extend .btn-xs;
   @extend .btn-success;
+}
+
+/******************************
+  Notice Elements 
+******************************/
+
+.invitation-notice {
+  padding: 2rem;
+  border: 1px lightgreen solid;
 }

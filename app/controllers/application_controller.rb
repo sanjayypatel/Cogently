@@ -7,11 +7,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def after_sign_in_path_for(resource_or_scope)
-    @membership = current_user.memberships.are_confirmed.first
-    if @membership
-      organization_path(current_user.organizations.first)
-    else
+    if current_user.has_pending_invitation? || !current_user.is_confirmed_member?
       user_path(current_user)
+    else
+      organization_path(current_user.organization)
     end
   end
 
@@ -21,6 +20,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:accept_invitation) << :name
+    devise_parameter_sanitizer.for(:accept_invitation) << :invited_organization_id
   end
 
   private
@@ -29,5 +29,4 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referer || root_path)
   end
-  
 end
