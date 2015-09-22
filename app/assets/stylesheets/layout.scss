@@ -110,6 +110,10 @@ body {
   @extend .btn-success;
 }
 
+.deny-invitation {
+  @extend .btn;
+  @extend .btn-danger;
+}
 .edit-record {
   @extend .btn;
   @extend .btn-default;
@@ -124,4 +128,13 @@ body {
   @extend .btn;
   @extend .btn-xs;
   @extend .btn-success;
+}
+
+/******************************
+  Notice Elements 
+******************************/
+
+.invitation-notice {
+  padding: 2rem;
+  border: 1px lightgreen solid;
 }

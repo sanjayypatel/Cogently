@@ -1,6 +1,11 @@
-.content-header Notice
-.content-subheader= "You have been invited to join #{invited_organization.name}."
-= form_for [invited_organization, membership] do |f|
-  = f.hidden_field :user_id, value: current_user.id
-  = f.submit "Confirm the Invitation", class: 'submit-form'
-%br
+.invitation-notice
+  .content-header Notice
+  .content-subheader= "You have been invited to join #{invited_organization.name}."
+  = form_for [invited_organization, membership] do |f|
+    = f.hidden_field :organization_id, value: invited_organization.id
+    = f.hidden_field :user_id, value: current_user.id
+    = f.submit "Confirm the Invitation", class: 'submit-form'
+  %br
+  = form_for current_user, url: deny_invitation_path, method: :patch do |f|
+    = f.submit "Turn Down Invitation", class: 'deny-invitation'
+  %br
