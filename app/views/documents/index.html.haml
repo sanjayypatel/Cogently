@@ -1,0 +1,9 @@
+.main-content
+  .content-header Documents Index
+  %ul
+    - @documents.each do |document|
+      %li
+        = "#{document.name}"
+        = link_to 'View', document_path(document)
+.sidebar
+  = link_to 'New Doc', new_document_path, class: 'new-record'

@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :organizations, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :memberships, only: [:create, :destroy, :update]
   end
+  resources :documents
   root to: 'welcome#index'
 end

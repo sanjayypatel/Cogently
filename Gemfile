@@ -64,3 +64,5 @@ gem 'pry-rails'
 gem 'faker'
 
 gem 'pundit'
+
+gem 'carrierwave'

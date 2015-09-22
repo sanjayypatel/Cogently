@@ -140,6 +140,11 @@ body {
   @extend .btn-default;
 }
 
+.new-record {
+  @extend .btn;
+  @extend .btn-default;
+}
+
 .view-record {
   @extend .btn;
   @extend .btn-default;

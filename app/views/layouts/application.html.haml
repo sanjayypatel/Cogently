@@ -13,6 +13,8 @@
         .navigation-header
           = link_to root_path, class: 'navigation-brand' do
             %span.glyphicon.glyphicon-pencil= " Cogently"
+        %ul.navigation-left
+          %li= link_to "Docs", documents_path
         %ul.navigation-right
           - if user_signed_in?
             %li= link_to (current_user.name || current_user.email), user_path(current_user)

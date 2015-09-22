@@ -1,0 +1,11 @@
+.main-content
+  .content-header Upload New Document
+  = form_for @document do |f|
+    .form-section
+      = f.label :name
+      = f.text_field :name
+    .form-section
+      = f.label :file, 'Choose a pdf file to upload'
+      = f.file_field :file
+    .form-seciton
+      = f.submit 'Upload'
