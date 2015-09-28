@@ -1,3 +1,6 @@
 .main-content
   .content-header= "#{@document.name}"
   .content-subheader= link_to 'View Original', @document.file.url
+.sidebar
+  .content-subheader= "Organization: #{@document.organization.name}"
+  .content-subheader= "Originally Uploaded by: #{@document.user.name}"

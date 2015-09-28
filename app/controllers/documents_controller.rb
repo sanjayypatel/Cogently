@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
 
   def index
-    @documents = Document.all
+    @documents = current_user.organization.documents
   end
 
   def new
@@ -25,7 +25,7 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:name, :file)
+    params.require(:document).permit(:name, :file, :organization_id, :user_id)
   end
 
 end
