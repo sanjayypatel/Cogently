@@ -190,10 +190,9 @@ body {
   margin-bottom:  1rem;
 }
 
-.document-links {
+.document-options {
   margin-left: 1rem;
 }
-
 
 .view-doc{
   @extend .btn;
@@ -209,4 +208,33 @@ body {
 
 .tag-links {
   margin-top: 1rem;
+}
+
+/******************************
+  Tag Elements 
+******************************/
+
+.tag-panel {
+  padding: 1rem;
+  margin: 1rem;
+  border-left: 5px darkgrey solid;
+}
+
+.tag-panel:nth-child(even) {
+  background: lightgrey;
+}
+
+.tag-header{
+  @extend .content-subheader;
+  margin-bottom:  1rem;
+}
+
+.tag-options {
+  margin-left: 1rem;
+}
+
+.view-tag{
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
 }

@@ -6,7 +6,7 @@
       = f.text_field :name, class: 'enter-text'
     .form-section
       = f.label :tag_list, "Tags (separated by commas)"
-      = f.text_field :tag_list, class: 'form-control', autocomplete: :off, value: @document.tag_list.join(', ')
+      = f.text_field :tag_list, class: 'form-control', autocomplete: :off, value: @document.all_tags_list.join(', ')
     .form-seciton
       = f.hidden_field :organization_id, value: current_user.organization.id
       = f.hidden_field :user_id, value: current_user.id

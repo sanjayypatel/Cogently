@@ -6,6 +6,7 @@ class OrganizationsController < ApplicationController
     @members = @organization.users
     @moderator = @organization.moderator
     @documents = @organization.documents
+    @tags = @organization.owned_tags
     if user_signed_in?
       @membership = current_user.membership
     end

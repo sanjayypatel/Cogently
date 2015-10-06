@@ -12,7 +12,8 @@ class DocumentsController < ApplicationController
 
   def create
     @organization = current_user.organization
-    @document = Document.new(document_params)
+    @document = @organization.documents.build(document_params)
+    @organization.tag(@document, on: :tags, with: params[:document][:tag_list])
     if @document.save
       flash[:notice] = "Document uploaded"
     else
@@ -29,6 +30,7 @@ class DocumentsController < ApplicationController
   def update
     @organization = Organization.find(params[:organization_id])
     @document = Document.find(params[:id])
+    @organization.tag(@document, on: :tags, with: params[:document][:tag_list])
     if @document.update_attributes(document_params)
       flash[:notice] = "Document updated"
     else
@@ -44,7 +46,7 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:name, :file, :organization_id, :user_id, :tag_list)
+    params.require(:document).permit(:name, :file, :organization_id, :user_id)
   end
 
 end
