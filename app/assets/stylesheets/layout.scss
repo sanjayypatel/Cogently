@@ -170,3 +170,43 @@ body {
   padding: 2rem;
   border: 1px lightgreen solid;
 }
+
+/******************************
+  Document Elements 
+******************************/
+
+.document-panel {
+  padding: 1rem;
+  margin: 1rem;
+  border-left: 5px darkgrey solid;
+}
+
+.document-panel:nth-child(even) {
+  background: lightgrey;
+}
+
+.document-header{
+  @extend .content-subheader;
+  margin-bottom:  1rem;
+}
+
+.document-links {
+  margin-left: 1rem;
+}
+
+
+.view-doc{
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+}
+
+.edit-doc {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-success;
+}
+
+.tag-links {
+  margin-top: 1rem;
+}

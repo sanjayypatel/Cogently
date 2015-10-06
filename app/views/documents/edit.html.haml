@@ -1,16 +1,13 @@
 .main-content
-  .content-header Upload New Document
+  .content-header Edit Document
   = form_for [@organization, @document] do |f|
     .form-section
       = f.label :name
       = f.text_field :name, class: 'enter-text'
     .form-section
-      = f.label :file, 'Choose a pdf file to upload'
-      = f.file_field :file
-    .form-section
       = f.label :tag_list, "Tags (separated by commas)"
-      = f.text_field :tag_list, class: 'form-control', autocomplete: :off
+      = f.text_field :tag_list, class: 'form-control', autocomplete: :off, value: @document.tag_list.join(', ')
     .form-seciton
       = f.hidden_field :organization_id, value: current_user.organization.id
       = f.hidden_field :user_id, value: current_user.id
-      = f.submit 'Upload', class: 'submit-form'
+      = f.submit 'Save', class: 'submit-form'

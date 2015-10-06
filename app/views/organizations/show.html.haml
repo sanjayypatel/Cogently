@@ -1,27 +1,45 @@
 .main-content
   .content-title
     = @organization.name
-  .profile-section
-    .content-header Moderator:
-    .moderator-header= "#{@moderator.name}"
-    .moderator-header= "#{@moderator.email}"
-  .profile-section
-    .content-header Members
-    .table-header
-      .col-md-3
-        .content-subheader= 'Name'
-      .col-md-3
-        .content-subheader= 'Email'
-      .col-md-6
-        .content-subheader= 'Role'
-    -@members.each do |member|
-      .table-row
-        .small-table-col
-          = "#{member.name}"
-        .small-table-col
-          = "#{member.email}"
-        .large-table-col
-          = "#{member.role.capitalize}"
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li.active
+        %a{href: "#members", 'data-toggle' => 'tab'} Members
+      %li
+        %a{href: "#documents", 'data-toggle' => 'tab'} Documents
+    .tab-content
+      .tab-pane.active#members
+        .profile-section
+          .content-header Moderator:
+          .moderator-header= "#{@moderator.name}"
+          .moderator-header= "#{@moderator.email}"
+        .profile-section
+          .content-header Members
+          .table-header
+            .col-md-3
+              .content-subheader= 'Name'
+            .col-md-3
+              .content-subheader= 'Email'
+            .col-md-6
+              .content-subheader= 'Role'
+          -@members.each do |member|
+            .table-row
+              .small-table-col
+                = "#{member.name}"
+              .small-table-col
+                = "#{member.email}"
+              .large-table-col
+                = "#{member.role.capitalize}"
+      .tab-pane#documents
+        - @documents.each do |document|
+          .document-panel
+            .document-header= "#{document.name}"
+            .document-links
+              = link_to 'View', organization_document_path(@organization, document), class: 'view-doc'
+              = link_to 'Edit', edit_organization_document_path(@organization, document), class: 'edit-doc'
+              .tag-links
+                = 'Tags: '
+                = tags_to_links(document.tags)
 .sidebar
   - if policy(@organization).edit?
     = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'

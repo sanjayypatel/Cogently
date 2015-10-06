@@ -5,6 +5,7 @@ class OrganizationsController < ApplicationController
     authorize @organization
     @members = @organization.users
     @moderator = @organization.moderator
+    @documents = @organization.documents
     if user_signed_in?
       @membership = current_user.membership
     end
