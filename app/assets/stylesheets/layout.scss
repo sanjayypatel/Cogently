@@ -87,7 +87,16 @@ body {
 
 .sidebar-title {
   font-size: 2rem;
+  border-bottom: 1px lightgrey solid;
   margin-bottom: 0.5rem;
+}
+
+.sidebar-content {
+  font-size: 1.5rem;
+}
+
+.sidebar-content-label {
+  font-weight: bold;
 }
 
 /******************************

@@ -14,3 +14,6 @@
       = f.hidden_field :organization_id, value: current_user.organization.id
       = f.hidden_field :user_id, value: current_user.id
       = f.submit 'Upload', class: 'submit-form'
+.sidebar
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

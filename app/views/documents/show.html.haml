@@ -4,5 +4,10 @@
   .content-subheader= "Tags"
   .tag-lists= tags_to_links(@document.tags)
 .sidebar
-  .content-subheader= "Organization: #{@document.organization.name}"
-  .content-subheader= "Originally Uploaded by: #{@document.user.name}"
+  .sidebar-section
+    .sidebar-title "Document Info"
+  .sidebar-section
+    .content-subheader= "Organization: #{@document.organization.name}"
+    .content-subheader= "Originally Uploaded by: #{@document.user.name}"
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

@@ -6,4 +6,5 @@
         = "#{document.name}"
         = link_to 'View', organization_document_path(@organization, document)
 .sidebar
-  = link_to 'New Doc', new_organization_document_path(@organization), class: 'new-record'
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

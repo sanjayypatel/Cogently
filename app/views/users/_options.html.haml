@@ -1,0 +1,5 @@
+.sidebar-section
+  .sidebar-title Options
+  - if policy(user.organization).edit?
+    .sidebar-section= link_to "Edit Organization", edit_organization_path(user.organization)
+  .sidebar-section= link_to 'Upload New Doc', new_organization_document_path(user.organization)

@@ -11,9 +11,11 @@ class UsersController < ApplicationController
     if @user.membership.nil?
       @membership = Membership.new
       @organization = nil
+      @documents = nil
     else
       @membership = @user.membership
       @organization = @user.organization
+      @documents = @user.documents.by_recently_updated
     end
   end
 
