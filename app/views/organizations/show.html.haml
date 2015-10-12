@@ -7,8 +7,6 @@
         %a{href: "#members", 'data-toggle' => 'tab'} Members
       %li
         %a{href: "#documents", 'data-toggle' => 'tab'} Documents
-      %li
-        %a{href: "#tags", 'data-toggle' => 'tab'} Tags
     .tab-content
       .tab-pane.active#members
         .profile-section
@@ -42,13 +40,15 @@
               .tag-links
                 = 'Tags: '
                 = tags_to_links(document.tags)
-      .tab-pane#tags
-        - @tags.each do |tag|
-          .tag-panel
-            .tag-header= "#{tag.name} (#{tag.taggings.count} tagged documents)"
-            .tag-options
-              = link_to 'View Docs', tag_path(tag), class: 'view-tag'
 .sidebar
-  - if policy(@organization).edit?
-    = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'
-    = link_to 'New Doc', new_organization_document_path(@organization), class: 'new-record'
+  .sidebar-section
+    .sidebar-title Options
+    - if policy(@organization).edit?
+      = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'
+      = link_to 'New Doc', new_organization_document_path(@organization), class: 'new-record'
+  .sidebar-section
+    .sidebar-title Tags
+    - @tags.each do |tag|
+      .tag-panel
+        .tag-header= "#{tag.name}"
+        .tag-header= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)

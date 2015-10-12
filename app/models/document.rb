@@ -4,4 +4,5 @@ class Document < ActiveRecord::Base
   belongs_to :user
 
   acts_as_taggable
+  scope :by_recently_updated, -> {order(created_at: :desc)}
 end

@@ -81,6 +81,15 @@ body {
   margin: 0 1rem;
 }
 
+.sidebar-section {
+  margin-bottom: 1rem;
+}
+
+.sidebar-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
 /******************************
   Table Elements
 ******************************/
@@ -215,9 +224,9 @@ body {
 ******************************/
 
 .tag-panel {
-  padding: 1rem;
-  margin: 1rem;
-  border-left: 5px darkgrey solid;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-left: 3px darkgrey solid;
 }
 
 .tag-panel:nth-child(even) {
@@ -225,12 +234,12 @@ body {
 }
 
 .tag-header{
-  @extend .content-subheader;
-  margin-bottom:  1rem;
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .tag-options {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 
 .view-tag{
