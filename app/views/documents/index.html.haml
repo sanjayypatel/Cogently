@@ -1,9 +1,15 @@
 .main-content
-  .content-header Documents Index
+  .content-title Documents Index
   %ul
     - @documents.each do |document|
-      %li
-        = "#{document.name}"
-        = link_to 'View', document_path(document)
+      .document-panel
+        .document-header= "#{document.name}"
+        .document-options
+          = link_to 'View', organization_document_path(@organization, document), class: 'view-doc'
+          = link_to 'Edit', edit_organization_document_path(@organization, document), class: 'edit-doc'
+          .tag-links
+            = 'Tags: '
+            = tags_to_links(document.tags)
+
 .sidebar
-  = link_to 'New Doc', new_document_path, class: 'new-record'
+  = link_to 'New Doc', new_organization_document_path, class: 'new-record'

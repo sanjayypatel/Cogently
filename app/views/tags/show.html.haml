@@ -1,0 +1,9 @@
+.main-content
+  .content-header= "Documents Tagged with: #{@tag}"
+  %ul
+    - @documents.each do |document|
+      %li
+        = "#{document.name}"
+        = link_to 'View', organization_document_path(@organization, document)
+.sidebar
+  = link_to 'New Doc', new_organization_document_path(@organization), class: 'new-record'

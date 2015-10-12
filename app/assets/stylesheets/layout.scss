@@ -81,6 +81,15 @@ body {
   margin: 0 1rem;
 }
 
+.sidebar-section {
+  margin-bottom: 1rem;
+}
+
+.sidebar-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
 /******************************
   Table Elements
 ******************************/
@@ -169,4 +178,72 @@ body {
 .invitation-notice {
   padding: 2rem;
   border: 1px lightgreen solid;
+}
+
+/******************************
+  Document Elements 
+******************************/
+
+.document-panel {
+  padding: 1rem;
+  margin: 1rem;
+  border-left: 5px darkgrey solid;
+}
+
+.document-panel:nth-child(even) {
+  background: lightgrey;
+}
+
+.document-header{
+  @extend .content-subheader;
+  margin-bottom:  1rem;
+}
+
+.document-options {
+  margin-left: 1rem;
+}
+
+.view-doc{
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+}
+
+.edit-doc {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-success;
+}
+
+.tag-links {
+  margin-top: 1rem;
+}
+
+/******************************
+  Tag Elements 
+******************************/
+
+.tag-panel {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-left: 3px darkgrey solid;
+}
+
+.tag-panel:nth-child(even) {
+  background: lightgrey;
+}
+
+.tag-header{
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.tag-options {
+  margin-left: 0.5rem;
+}
+
+.view-tag{
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
 }
