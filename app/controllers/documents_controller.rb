@@ -1,4 +1,7 @@
 class DocumentsController < ApplicationController
+  require 'rubygems'
+  require 'pdf/reader'
+  require 'uri'
 
   def index
     @organization = current_user.organization
@@ -14,12 +17,15 @@ class DocumentsController < ApplicationController
     @organization = current_user.organization
     @document = @organization.documents.build(document_params)
     @organization.tag(@document, on: :tags, with: params[:document][:tag_list])
+    io = open(@document.path_to_file)
+    reader = PDF::Reader.new(io)
+    @document.content = Document.process_new_document(reader.to_html)
     if @document.save
       flash[:notice] = "Document uploaded"
     else
       flash[:else] = "Error uploading document"
     end
-    redirect_to organization_documents_path(@organization)
+    redirect_to organization_document_path(@organization, @document)
   end
 
   def edit
@@ -41,6 +47,8 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    io = open(@document.path_to_file)
+    @reader = PDF::Reader.new(io)
   end
 
   private

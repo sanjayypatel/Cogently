@@ -1,13 +1,21 @@
 .main-content
   .content-header= "#{@document.name}"
   .content-subheader= link_to 'View Original', @document.file.url
-  .content-subheader= "Tags"
+  .content-subheader Tags
   .tag-lists= tags_to_links(@document.tags)
+  .content-subheader Document Contents:
+  .document-contents
+    = @document.content.html_safe
+  .content-subheader Raw HTML:
+  .document-contents
+    = @document.content
 .sidebar
   .sidebar-section
-    .sidebar-title "Document Info"
+    .sidebar-title Document Info
   .sidebar-section
-    .content-subheader= "Organization: #{@document.organization.name}"
-    .content-subheader= "Originally Uploaded by: #{@document.user.name}"
+    .sidebar-content-label Organization:
+    .sidebar-content= "#{@document.organization.name}"
+    .sidebar-content-label Orignally Uploaded by:
+    .sidebar-content= "#{@document.user.name}"
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}

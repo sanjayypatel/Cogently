@@ -68,3 +68,9 @@ gem 'pundit'
 gem 'carrierwave'
 
 gem 'acts-as-taggable-on', '~> 3.4'
+
+gem 'pdf-reader'
+
+gem 'pdf-reader-html'
+
+gem 'nokogiri'

@@ -256,3 +256,13 @@ body {
   @extend .btn-xs;
   @extend .btn-default;
 }
+
+/******************************
+  Document Elements 
+******************************/
+
+.document-contents {
+  border: 1px lightgrey solid;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
