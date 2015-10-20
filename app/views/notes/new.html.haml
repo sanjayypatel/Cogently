@@ -1,0 +1,22 @@
+.main-content
+  .content-header New Note for
+  .document-paragraph
+    = @paragraph.content.html_safe
+  = form_for [@paragraph, @note] do |f|
+    .form-section
+      = f.label :body, 'Note'
+      = f.text_field :body, class: 'enter-text'
+    .form-section
+      = f.hidden_field :paragraph_id, value: @paragraph.id
+      = f.hidden_field :user_id, value: current_user.id
+      = f.submit 'Save', class: 'submit-form'
+.sidebar
+  .sidebar-section
+    .sidebar-title Document Info
+  .sidebar-section
+    .sidebar-content-label Organization:
+    .sidebar-content= "#{@document.organization.name}"
+    .sidebar-content-label Orignally Uploaded by:
+    .sidebar-content= "#{@document.user.name}"
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

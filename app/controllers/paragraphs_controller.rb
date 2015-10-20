@@ -1,0 +1,3 @@
+class ParagraphsController < ApplicationController
+
+end

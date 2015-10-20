@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     resources :memberships, only: [:create, :destroy, :update]
     resources :documents, only: [:show, :new, :create, :edit, :update]
   end
+  resources :documents, only: [] do
+    resources :paragraphs, only: [:create]
+  end
+  resources :paragraphs, only: [] do
+    resources :notes, except: [:index, :show]
+  end
   resources :tags, only: [:show]
   root to: 'welcome#index'
 end

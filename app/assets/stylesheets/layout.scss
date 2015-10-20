@@ -265,4 +265,24 @@ body {
   border: 1px lightgrey solid;
   padding: 1rem;
   margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.document-paragraph {
+  margin-top: 1rem;
+}
+
+.new-note {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+  float: left;
+  margin-right: 1rem;
+}
+
+.note-contents {
+  color: grey;
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-left: 4rem;
 }

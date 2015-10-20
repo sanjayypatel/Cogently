@@ -5,10 +5,14 @@
   .tag-lists= tags_to_links(@document.tags)
   .content-subheader Document Contents:
   .document-contents
-    = @document.content.html_safe
-  .content-subheader Raw HTML:
-  .document-contents
-    = @document.content
+    - @paragraphs.each do |paragraph|
+
+      .document-paragraph
+        = link_to "+ ", new_paragraph_note_path(paragraph), class: 'new-note'
+        = paragraph.content.html_safe
+      - if paragraph.notes
+        - paragraph.notes.each do |note|
+          .note-contents= note.to_s
 .sidebar
   .sidebar-section
     .sidebar-title Document Info

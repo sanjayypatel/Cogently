@@ -19,11 +19,12 @@ class DocumentsController < ApplicationController
     @organization.tag(@document, on: :tags, with: params[:document][:tag_list])
     io = open(@document.path_to_file)
     reader = PDF::Reader.new(io)
-    @document.content = Document.process_new_document(reader.to_html)
     if @document.save
+      @document.content = @document.process_new_document(reader.to_html)
+      @document.save
       flash[:notice] = "Document uploaded"
     else
-      flash[:else] = "Error uploading document"
+      flash[:error] = "Error uploading document"
     end
     redirect_to organization_document_path(@organization, @document)
   end
@@ -40,7 +41,7 @@ class DocumentsController < ApplicationController
     if @document.update_attributes(document_params)
       flash[:notice] = "Document updated"
     else
-      flash[:else] = "Error updating document"
+      flash[:error] = "Error updating document"
     end
     redirect_to organization_document_path(@organization, @document)
   end
@@ -49,6 +50,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     io = open(@document.path_to_file)
     @reader = PDF::Reader.new(io)
+    @paragraphs = @document.paragraphs
   end
 
   private
