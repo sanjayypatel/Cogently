@@ -48,6 +48,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    @organization = @document.organization
     io = open(@document.path_to_file)
     @reader = PDF::Reader.new(io)
     @paragraphs = @document.paragraphs
