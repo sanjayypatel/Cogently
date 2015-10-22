@@ -41,11 +41,8 @@
                 = 'Tags: '
                 = tags_to_links(document.tags)
 .sidebar
-  .sidebar-section
-    .sidebar-title Options
-    - if policy(@organization).edit?
-      = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'
-      = link_to 'New Doc', new_organization_document_path(@organization), class: 'new-record'
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}
   .sidebar-section
     .sidebar-title Tags
     - @tags.each do |tag|

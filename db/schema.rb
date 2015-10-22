@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005172859) do
+ActiveRecord::Schema.define(version: 20151020175610) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20151005172859) do
     t.datetime "updated_at",      null: false
     t.integer  "organization_id"
     t.integer  "user_id"
+    t.text     "content"
   end
 
   add_index "documents", ["organization_id"], name: "index_documents_on_organization_id"
@@ -35,6 +36,17 @@ ActiveRecord::Schema.define(version: 20151005172859) do
   add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id"
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
 
+  create_table "notes", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "paragraph_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "notes", ["paragraph_id"], name: "index_notes_on_paragraph_id"
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",   null: false
@@ -43,6 +55,15 @@ ActiveRecord::Schema.define(version: 20151005172859) do
   end
 
   add_index "organizations", ["moderator_id"], name: "index_organizations_on_moderator_id"
+
+  create_table "paragraphs", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "paragraphs", ["document_id"], name: "index_paragraphs_on_document_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

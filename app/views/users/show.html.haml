@@ -1,16 +1,16 @@
 .main-content
   - if current_user.has_pending_invitation?
     = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
-  .content-title= "#{current_user.name}'s Profile"
-  .profile-section
-    - if @organization
-      .content-header= "Member of #{@organization.name}"
-      - if policy(@organization).edit?
-        = link_to "Edit Organization", edit_organization_path(@organization), class: 'edit-record'
-      = link_to "View Organization", organization_path(@organization), class: 'submit-form'
-  .profile-section
-    .content-header= "Email"
-    .content-subheader= current_user.email
+  .content-title= "My Docs"
+  - @documents.each do |document|
+    .document-panel
+      .document-header= document.name
+      .document-options
+        = link_to 'View', organization_document_path(@organization, document), class: 'view-doc'
+        = link_to 'Edit', edit_organization_document_path(@organization, document), class: 'edit-doc'
+        .tag-links
+          = 'Tags: '
+          = tags_to_links(document.tags)
 .sidebar
-  - if policy(current_user).edit?
-    =link_to "Edit Profile", edit_user_registration_path(current_user), class: 'edit-record'
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   patch 'users/:id/deny' => 'users#deny', as: 'deny_invitation'
   resources :organizations, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :memberships, only: [:create, :destroy, :update]
-    resources :documents
+    resources :documents, only: [:show, :new, :create, :edit, :update]
   end
-  resources :tags, only: [:show, :index]
+  resources :documents, only: [] do
+    resources :paragraphs, only: [:create]
+  end
+  resources :paragraphs, only: [] do
+    resources :notes, except: [:index, :show]
+  end
+  resources :tags, only: [:show]
   root to: 'welcome#index'
 end
