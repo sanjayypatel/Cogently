@@ -1,14 +1,13 @@
 .main-content
-  .content-header= "#{@document.name}"
-  .content-subheader Document Contents:
-  .document-contents
-    - @paragraphs.each do |paragraph|
-      .document-paragraph
-        = link_to '', new_paragraph_note_path(paragraph), class: 'new-note glyphicon glyphicon-pencil'
-        = paragraph.content.html_safe
-      - if paragraph.notes
-        - paragraph.notes.each do |note|
-          .note-contents= note.to_s
+  .content-header= "#{@document.name} Summary"
+  .summary-content= @summary.body
+  .content-subheader Notes
+  - @notes.each do |note|
+    .content-panel
+      .note-display= "Note: #{note.to_s}"
+      .paragraph-as-note
+        = "Noted On:"
+        = note.paragraph.content.html_safe
 .sidebar
   .sidebar-section
     .sidebar-title Document Info
@@ -24,8 +23,5 @@
     .sidebar-content= "#{@organization.name}"
     .sidebar-content-label Orignally Uploaded by:
     .sidebar-content= "#{@document.user.name}"
-  .sidebar-section
-    .sidebar-title Summary
-    = render partial: 'summaries/form', locals: {document: @document, summary: @summary}
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}

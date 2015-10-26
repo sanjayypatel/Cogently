@@ -32,6 +32,7 @@ class DocumentsController < ApplicationController
   def edit
     @organization = Organization.find(params[:organization_id])
     @document = Document.find(params[:id])
+    @document.summary.nil? ? @summary = Summary.new : @summary = @document.summary
   end
 
   def update
@@ -52,6 +53,7 @@ class DocumentsController < ApplicationController
     io = open(@document.path_to_file)
     @reader = PDF::Reader.new(io)
     @paragraphs = @document.paragraphs
+    @document.summary.nil? ? @summary = Summary.new : @summary = @document.summary
   end
 
   private

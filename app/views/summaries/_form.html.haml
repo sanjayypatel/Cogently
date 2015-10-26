@@ -1,0 +1,7 @@
+= form_for [document, summary] do |f|
+  .form-section
+    = f.hidden_field :document_id, value: document.id
+    = f.text_area :body, class: 'form-control', :rows => 10
+  .form-section
+    = f.submit 'Save', class: 'submit-form'
+    = link_to 'View', document_summary_path(document, summary)

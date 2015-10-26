@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :documents, only: [] do
     resources :paragraphs, only: [:create]
+    resources :summaries, only: [:create, :update, :show]
   end
   resources :paragraphs, only: [] do
     resources :notes, except: [:index, :show]
