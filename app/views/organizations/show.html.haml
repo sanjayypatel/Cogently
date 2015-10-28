@@ -7,6 +7,8 @@
         %a{href: "#members", 'data-toggle' => 'tab'} Members
       %li
         %a{href: "#documents", 'data-toggle' => 'tab'} Documents
+      %li
+        %a{href: "#tags", 'data-toggle' => 'tab'} Tags
     .tab-content
       .tab-pane.active#members
         .profile-section
@@ -35,17 +37,30 @@
           .content-panel
             .document-header= document.name
             .document-options
-              = link_to 'View', organization_document_path(@organization, document), class: 'view-doc'
-              = link_to 'Edit', edit_organization_document_path(@organization, document), class: 'edit-doc'
+              = link_to 'View', organization_document_path(@organization, document)
+              = link_to 'Edit', edit_organization_document_path(@organization, document)
               .tag-links
                 = 'Tags: '
                 = tags_to_links(document.tags)
+      .tab-pane#tags
+        - @tags.each do |tag|
+          .content-panel
+            .tag-header= "#{tag.name}"
+            .tag-header= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)
+            = form_for [current_user, Feed.new] do |f|
+              = f.hidden_field :tag, value: tag.name
+              = f.hidden_field :user_id, value: current_user.id
+              = f.submit 'Create Custom Feed', class: 'create-feed'
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}
   .sidebar-section
-    .sidebar-title Tags
-    - @tags.each do |tag|
+    .sidebar-title Trending Tags
+    - @trending_tags.each do |tag|
       .tag-panel
         .tag-header= "#{tag.name}"
         .tag-header= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)
+        = form_for [current_user, Feed.new] do |f|
+          = f.hidden_field :tag, value: tag.name
+          = f.hidden_field :user_id, value: current_user.id
+          = f.submit 'Create Custom Feed', class: 'create-feed'

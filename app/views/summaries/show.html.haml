@@ -4,10 +4,9 @@
   .content-subheader Notes
   - @notes.each do |note|
     .content-panel
-      .note-display= "Note: #{note.to_s}"
-      .paragraph-as-note
-        = "Noted On:"
-        = note.paragraph.content.html_safe
+      .content-subheader= note.paragraph.content.html_safe
+      .note-display
+        = note.to_s
 .sidebar
   .sidebar-section
     .sidebar-title Document Info

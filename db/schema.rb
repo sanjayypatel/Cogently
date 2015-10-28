@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026181958) do
+ActiveRecord::Schema.define(version: 20151026210755) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20151026181958) do
 
   add_index "documents", ["organization_id"], name: "index_documents_on_organization_id"
   add_index "documents", ["user_id"], name: "index_documents_on_user_id"
+
+  create_table "feeds", force: :cascade do |t|
+    t.string   "tag"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "feeds", ["user_id"], name: "index_feeds_on_user_id"
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"

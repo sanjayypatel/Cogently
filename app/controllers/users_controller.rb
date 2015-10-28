@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       @organization = @user.organization
       @documents = @user.documents.by_recently_updated
     end
+    @feeds = @user.feeds
   end
 
   def update

@@ -193,16 +193,6 @@ body {
   Document Elements 
 ******************************/
 
-.document-panel {
-  padding: 1rem;
-  margin: 1rem;
-  border-left: 5px darkgrey solid;
-}
-
-.document-panel:nth-child(even) {
-  background: lightgrey;
-}
-
 .document-header{
   @extend .content-subheader;
   margin-bottom:  1rem;
@@ -233,8 +223,9 @@ body {
 ******************************/
 
 .tag-panel {
+  @extend .content-panel;
   padding: 0.5rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   border-left: 3px darkgrey solid;
 }
 
@@ -257,6 +248,12 @@ body {
   @extend .btn-default;
 }
 
+.create-feed {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-success;
+}
+
 /******************************
   Note Elements 
 ******************************/
@@ -270,16 +267,6 @@ body {
 
 .document-paragraph {
   margin-top: 1rem;
-}
-
-.note-panel {
-  padding: 1rem;
-  margin: 1rem;
-  border-left: 5px darkgrey solid;
-}
-
-.note-panel:nth-child(odd) {
-  background: lightgrey;
 }
 
 .new-note {
@@ -315,10 +302,11 @@ body {
 
 .content-panel {
   padding: 1rem;
-  margin: 1rem;
+  margin: 1rem 0;
   border-left: 5px darkgrey solid;
+  border-top: 1px darkgrey solid;
 }
 
-.content-panel:nth-child(odd) {
+.content-panel:nth-child(even) {
   background: lightgrey;
 }

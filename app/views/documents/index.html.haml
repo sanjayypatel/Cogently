@@ -1,7 +1,5 @@
 .main-content
-  - if current_user.has_pending_invitation?
-    = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
-  .content-title My Docs
+  .content-title Group Documents
   - @documents.each do |document|
     .content-panel
       .document-header= document.name

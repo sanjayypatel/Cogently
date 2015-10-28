@@ -7,6 +7,7 @@ class OrganizationsController < ApplicationController
     @moderator = @organization.moderator
     @documents = @organization.documents.by_recently_updated
     @tags = @organization.owned_tags
+    @trending_tags = @organization.owned_tags.most_used(5)
     if user_signed_in?
       @membership = current_user.membership
     end

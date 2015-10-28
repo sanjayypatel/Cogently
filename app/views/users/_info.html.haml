@@ -7,13 +7,13 @@
     .sidebar-section
       .sidebar-content-label Member of
       .sidebar-content= "#{user.organization.name}"
-      .sidebar-content
-        = link_to "View", organization_path(user.organization)
-        - if policy(user.organization).edit?
-          = link_to "Edit", edit_organization_path(user.organization)
+      .sidebar-content= link_to "View", organization_path(user.organization)
   .sidebar-section
     .sidebar-content-label User Name
     .sidebar-content= user.name
   .sidebar-section
     .sidebar-content-label Email
     .sidebar-content= user.email
+  .sidebar-section
+    .sidebar-content-label Feeds
+    .sidebar-content= feeds_to_links(user)

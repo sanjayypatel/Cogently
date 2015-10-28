@@ -1,0 +1,9 @@
+.main-content
+  .content-title My Feeds
+  - @feeds.each do |feed|
+    .content-panel
+      .document-header= feed.tag
+      .document-header= link_to 'View', user_feed_path(feed.user, feed)
+.sidebar
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}
