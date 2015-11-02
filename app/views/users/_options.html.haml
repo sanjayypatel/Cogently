@@ -11,3 +11,5 @@
       .sidebar-content= link_to "Edit Organization", edit_organization_path(user.organization)
   .sidebar-section
     .sidebar-content= link_to 'Upload New Doc', new_organization_document_path(user.organization)
+  .sidebar-section
+    .sidebar-content= link_to 'Create New Event', new_organization_event_path(user.organization)

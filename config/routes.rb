@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :organizations, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :memberships, only: [:create, :destroy, :update]
     resources :documents, only: [:index, :show, :new, :create, :edit, :update]
+    resources :events
   end
   resources :documents, only: [] do
     resources :paragraphs, only: [:create]

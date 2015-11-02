@@ -1,5 +1,5 @@
 @import "bootstrap";
-
+@import "simple_calendar";
 /******************************
   Application Layout Styles
 ******************************/
@@ -13,7 +13,6 @@ body {
 .navigation {
   @extend .navbar;
   @extend .navbar-default;
-  @extend .navbar-fixed-top;
   padding-right: 2rem;
 }
 .navigation-header {
@@ -309,4 +308,65 @@ body {
 
 .content-panel:nth-child(even) {
   background: lightgrey;
+}
+
+/******************************
+  Calendar Elements 
+******************************/
+
+
+// Styles from simple_calendar gem
+.simple-calendar {
+
+  .calendar-header{
+    margin: 1rem 0;
+
+    .previous-button{
+      @extend .btn;
+      @extend .btn-xs;
+      @extend .btn-default;
+    }
+    .next-button{
+      @extend .btn;
+      @extend .btn-xs;
+      @extend .btn-default;
+    }
+
+    .month-year{
+      font-size: 2rem;
+    }
+  }
+
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+  }
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+  .previous-button{
+    font-size: 1rem;
+  }
+}
+
+.event-button{
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-info;
+  margin-bottom: 2px;
 }

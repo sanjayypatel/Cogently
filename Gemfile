@@ -74,3 +74,5 @@ gem 'pdf-reader'
 gem 'pdf-reader-html'
 
 gem 'nokogiri'
+
+gem 'simple_calendar'

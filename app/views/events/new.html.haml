@@ -1,0 +1,16 @@
+.main-content
+  .content-title Create New Event
+  =form_for [@organization, @event] do |f|
+    .form-section
+      = f.label :title
+      = f.text_field :title, autofocus: true, class: 'enter-text'
+    .form-section
+      = f.label :start_time, "Start Time"
+      = f.date_field :start_time, class: 'enter-text'
+    .form-section
+      = f.label :end_time, "End Time"
+      = f.date_field :end_time, class: 'enter-text'
+    .form-section
+      = f.hidden_field :organization_id, value: @organization.id
+      = f.submit 'Save', class: 'submit-form'
+.sidebar

@@ -19,6 +19,7 @@
             %li= link_to "My Docs", user_path(current_user)
             %li= link_to "My Feeds", user_feeds_path(current_user)
             %li= link_to "Group Docs", organization_documents_path(current_user.organization)
+            %li= link_to "My Events", organization_events_path(current_user.organization)
         %ul.navigation-right
           - if user_signed_in?
             %li= link_to (current_user.name || current_user.email), user_path(current_user)
