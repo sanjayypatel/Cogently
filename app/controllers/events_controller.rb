@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   def index
     @organization = Organization.find(params[:organization_id])
-    @events = Event.all
+    params[:start_date].nil? ? @start_date = Time.now.strftime("%d/%m/%Y") : @start_date = params[:start_date]
+    @events = Event.starting_during(Date.parse(@start_date))
   end
 
   def new

@@ -1,10 +1,16 @@
-.main-content
+.centered-content-full
   =month_calendar events: @events do |date, events|
     - capture_haml do
       = date.day
       .event-list
         - events.each do |event|
           = link_to event.title, organization_event_path(@organization, event), class: 'event-button'
+.main-content
+  .content-title Events
+  - @events.each do |event|
+    .content-panel
+      .event-header= event.title
+      .event-content= event.start_time
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}
