@@ -1,3 +1,6 @@
 .main-content
   .content-title= "#{@event.title}"
+  -@attendees.each do |attendee|
+    ="#{attendee.name}"
 .sidebar
+  = link_to "Edit", edit_organization_event_path(@organization, @event)

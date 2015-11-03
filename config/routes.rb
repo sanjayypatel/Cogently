@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :documents, only: [:index, :show, :new, :create, :edit, :update]
     resources :events
   end
+  patch 'organizations/:organization_id/event/:id/add' => 'events#add_attendee', as: 'add_attendee'
+  patch 'organizations/:organization_id/event/:id/reference' => 'events#add_reference', as: 'add_reference'
   resources :documents, only: [] do
     resources :paragraphs, only: [:create]
     resources :summaries, only: [:create, :update, :show]

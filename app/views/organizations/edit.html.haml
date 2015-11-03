@@ -37,7 +37,6 @@
               = f.submit "Update", class: 'update-user-role'
           %br
 .sidebar
-  = link_to "View Organization", organization_path, class: 'view-record'
   - if @invited_users.count > 0
     .content-subheader= "Pending Invited Users"
     %ul
@@ -45,8 +44,9 @@
       %li= "#{invited_user.name}, #{invited_user.email}"
       %br
   %br
+  .sidebar-title Invite Users
   - if @found_users
-    .content-subheader= "Search Results for \'#{@query}\'"
+    .sidebar-content= "Search Results for \'#{@query}\'"
     %ul
     - @found_users.each do |found_user|
       %li
@@ -60,3 +60,5 @@
     = link_to "Invite", new_user_invitation_path, class: 'invite-user'
     %br
   = render partial: 'memberships/search', locals: {organization: @organization}
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

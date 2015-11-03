@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   def index
     @organization = Organization.find(params[:organization_id])
     params[:start_date].nil? ? @start_date = Time.now.strftime("%d/%m/%Y") : @start_date = params[:start_date]
-    @events = Event.starting_during(Date.parse(@start_date))
+    @events = @organization.events.starting_during(Date.parse(@start_date))
   end
 
   def new
@@ -24,11 +24,50 @@ class EventsController < ApplicationController
   def show
     @organization = Organization.find(params[:organization_id])
     @event = Event.find(params[:id])
+    @attendees = @event.users
   end
 
-  private
+  def edit
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:id])
+    @attendees = @event.users
+    if params[:search]
+      @found_users = @organization.search_members(params[:search]) - @event.users.to_a
+      @query = params[:search]
+    else
+      @found_users = nil
+    end
+    if params[:search_summaries]
+      @found_summaries = @organization.search_summaries(params[:search_summaries]) - @event.summaries.to_a
+      @summary_query = params[:search_summaries]
+    else
+      @found_summaries = nil
+    end
+  end
+
+  def update
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:id])
+    redirect_to organization_event_path(@organization, @event)
+  end
+
+  def add_attendee
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:id])
+    @user = User.find(params[:event][:user_id])
+    @event.users << @user
+    redirect_to organization_event_path(@organization, @event)
+  end
+
+  def add_reference
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:id])
+    @summary = Summary.find(params[:event][:summary_id])
+    @event.summaries << @summary
+    redirect_to organization_event_path(@organization, @event)
+  end
 
   def event_params
-    params.require(:event).permit(:title, :organization_id, :start_time, :end_time)
+    params.require(:event).permit(:title, :organization_id, :start_time, :end_time, :user_id)
   end
 end

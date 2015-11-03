@@ -1,0 +1,29 @@
+.main-content
+  .content-title Edit Event
+  .content-header= @event.title
+  -@attendees.each do |attendee|
+    ="#{attendee.name}"
+.sidebar
+  .sidebar-title Add Attendees
+  - if @found_users
+    .content-subheader= "Search Results for \'#{@query}\'"
+    %ul
+    - @found_users.each do |found_user|
+      %li
+        = form_for [@organization, @event], url: add_attendee_path, method: :patch do |f|
+          = "#{found_user.name}, #{found_user.email}"
+          = f.hidden_field :user_id, value: found_user.id
+          = f.submit "Add User to Event", class: 'invite-user'
+  = render partial: 'memberships/attendance', locals: {organization: @organization, event: @event }
+  .sidebar-title Add Documents
+  - if @found_summaries
+    .content-subheader= "Search Results for \'#{@summary_query}\'"
+    %ul
+    - @found_summaries.each do |found_summary|
+      %li
+        = form_for [@organization, @event], url: add_reference_path, method: :patch do |f|
+          = "#{found_summary.document.name}"
+          = f.hidden_field :summary_id, value: found_summary.id
+          = f.submit "Add Document to Event", class: 'invite-user'
+      %br
+  = render partial: 'summaries/search', locals: {organization: @organization, event: @event }

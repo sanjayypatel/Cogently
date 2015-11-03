@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :organization
-
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :summaries
   scope :starting_during, -> (time) { where("strftime('%m', start_time) = ?", time.strftime('%m')) }
 end

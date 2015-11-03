@@ -1,0 +1,6 @@
+= form_tag edit_organization_event_path(organization, event), method: "get" do
+  .sidebar-content Search
+  .form-section
+    = text_field_tag :search_summaries, params[:search_summaries], class: 'enter-text', placeholder: 'Search documents by title.'
+  .form-section
+    = submit_tag "Find Document", class: 'submit-form'
