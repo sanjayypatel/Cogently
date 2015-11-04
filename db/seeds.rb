@@ -1,3 +1,7 @@
+  require 'rubygems'
+  require 'pdf/reader'
+  require 'uri'
+
 # Seed Organizations
 first_organization = Organization.new(
   name: 'New Organization 1'
@@ -71,7 +75,71 @@ end
   user.save!
 end
 
+#Seed Documents and summaries
+
+5.times do |n|
+  document = Document.new(
+    name: "document#{n + 1}",
+    user: first_user,
+    organization: first_organization
+  )
+  document.file.store!(File.open(File.join(Rails.root, 'test/fixtures/test.pdf')))
+  io = open(document.path_to_file)
+  reader = PDF::Reader.new(io)
+  document.content = document.process_new_document(reader.to_html)
+  document.save!
+  summary = Summary.new(
+    body: "Summary for document#{n + 1}",
+    document: document
+  )
+  summary.save!
+end
+
+5.times do |n|
+  document = Document.new(
+    name: "document#{n + 6}",
+    user: second_user,
+    organization: second_organization
+  )
+  document.file.store!(File.open(File.join(Rails.root, 'test/fixtures/test.pdf')))
+  io = open(document.path_to_file)
+  reader = PDF::Reader.new(io)
+  document.content = document.process_new_document(reader.to_html)
+  document.save!
+  summary = Summary.new(
+    body: "Summary for document#{n + 6}",
+    document: document
+  )
+  summary.save!
+end
+
+# Seed Events
+
+5.times do |n|
+  event = Event.new(
+    title: "Event#{n + 1}",
+    organization: first_organization,
+    start_time: Time.now + n
+  )
+  event.users << first_user
+  event.summaries << first_organization.documents.first.summary
+  event.save!
+end
+
+5.times do |n|
+  event = Event.new(
+    title: "Event#{n + 6}",
+    organization: second_organization,
+    start_time: Time.now + n
+  )
+  event.users << second_user
+  event.summaries << second_organization.documents.first.summary
+  event.save!
+end
 puts "Finished Seeding"
 puts "#{User.count} users created."
 puts "#{Organization.count} organizations created."
 puts "#{Membership.count} memberships created."
+puts "#{Document.count} documents created."
+puts "#{Summary.count} summaries created."
+puts "#{Event.count} events created."
