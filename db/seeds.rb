@@ -119,7 +119,7 @@ end
   event = Event.new(
     title: "Event#{n + 1}",
     organization: first_organization,
-    start_time: Time.now + n
+    start_time: Time.now
   )
   event.users << first_user
   event.summaries << first_organization.documents.first.summary
@@ -130,7 +130,7 @@ end
   event = Event.new(
     title: "Event#{n + 6}",
     organization: second_organization,
-    start_time: Time.now + n
+    start_time: Time.now 
   )
   event.users << second_user
   event.summaries << second_organization.documents.first.summary

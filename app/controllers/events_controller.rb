@@ -25,6 +25,7 @@ class EventsController < ApplicationController
     @organization = Organization.find(params[:organization_id])
     @event = Event.find(params[:id])
     @attendees = @event.users
+    @summaries = @event.summaries
   end
 
   def edit

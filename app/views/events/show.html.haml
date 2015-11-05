@@ -1,6 +1,31 @@
 .main-content
   .content-title= "#{@event.title}"
-  -@attendees.each do |attendee|
-    ="#{attendee.name}"
+  .content-header Attendees
+  .table-header
+    .col-md-3
+      .content-subheader= 'Name'
+    .col-md-3
+      .content-subheader= 'Email'
+    .col-md-6
+      .content-subheader= 'Role'
+  - @attendees.each do |attendee|
+    .table-row
+      .small-table-col
+        = "#{attendee.name}"
+      .small-table-col
+        = "#{attendee.email}"
+      .large-table-col
+        = "#{attendee.role.capitalize}"
+  .content-header Documents
+  - @summaries.each do |summary|
+    .content-panel
+      .content-header= "#{summary.document.name} Summary"
+      .summary-content= summary.body
+      .content-subheader Notes
+      - summary.document.notes.each do |note|
+        .content-panel
+          .content-subheader= note.paragraph.content.html_safe
+          .note-display
+            = note.to_s
 .sidebar
   = link_to "Edit", edit_organization_event_path(@organization, @event)
