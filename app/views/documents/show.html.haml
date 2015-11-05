@@ -1,8 +1,31 @@
 .main-content
   .content-header= "#{@document.name}"
-  .content-subheader= link_to 'View Original', @document.file.url
-  .content-subheader= "Tags"
-  .tag-lists= tags_to_links(@document.tags)
+  .content-subheader Document Contents:
+  .document-contents
+    - @paragraphs.each do |paragraph|
+      .document-paragraph
+        = link_to '', new_paragraph_note_path(paragraph), class: 'new-note glyphicon glyphicon-pencil'
+        = paragraph.content.html_safe
+      - if paragraph.notes
+        - paragraph.notes.each do |note|
+          .note-contents= note.to_s
 .sidebar
-  .content-subheader= "Organization: #{@document.organization.name}"
-  .content-subheader= "Originally Uploaded by: #{@document.user.name}"
+  .sidebar-section
+    .sidebar-title Document Info
+  .sidebar-section
+    .sidebar-content= link_to 'View Original', @document.file.url
+    .sidebar-content= link_to 'Edit Document', edit_organization_document_path(@organization, @document)
+    .sidebar-content-label
+      .glyphicon.glyphicon-tags
+      ="Tags"
+    .sidebar-content
+      .tag-lists= tags_to_links(@document.tags)
+    .sidebar-content-label Organization:
+    .sidebar-content= "#{@organization.name}"
+    .sidebar-content-label Orignally Uploaded by:
+    .sidebar-content= "#{@document.user.name}"
+  .sidebar-section
+    .sidebar-title Summary
+    = render partial: 'summaries/form', locals: {document: @document, summary: @summary}
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

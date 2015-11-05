@@ -1,5 +1,5 @@
 .main-content
-  .content-header Edit Document
+  .content-header Edit Document Info
   = form_for [@organization, @document] do |f|
     .form-section
       = f.label :name
@@ -11,3 +11,8 @@
       = f.hidden_field :organization_id, value: current_user.organization.id
       = f.hidden_field :user_id, value: current_user.id
       = f.submit 'Save', class: 'submit-form'
+  .content-header Summary
+  = render partial: 'summaries/form', locals: {document: @document, summary: @summary}
+.sidebar
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

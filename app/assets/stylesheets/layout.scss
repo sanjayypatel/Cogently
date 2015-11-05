@@ -1,5 +1,5 @@
 @import "bootstrap";
-
+@import "simple_calendar";
 /******************************
   Application Layout Styles
 ******************************/
@@ -13,7 +13,6 @@ body {
 .navigation {
   @extend .navbar;
   @extend .navbar-default;
-  @extend .navbar-fixed-top;
   padding-right: 2rem;
 }
 .navigation-header {
@@ -54,6 +53,10 @@ body {
   @extend .col-md-6;
   @extend .col-md-offset-3;
 }
+.centered-content-full{
+  @extend .col-md-10;
+  @extend .col-md-offset-1;
+}
 .content-title {
   font-size: 5rem;
   padding-bottom: 2rem;
@@ -87,7 +90,16 @@ body {
 
 .sidebar-title {
   font-size: 2rem;
+  border-bottom: 1px lightgrey solid;
   margin-bottom: 0.5rem;
+}
+
+.sidebar-content {
+  font-size: 1.5rem;
+}
+
+.sidebar-content-label {
+  font-weight: bold;
 }
 
 /******************************
@@ -184,16 +196,6 @@ body {
   Document Elements 
 ******************************/
 
-.document-panel {
-  padding: 1rem;
-  margin: 1rem;
-  border-left: 5px darkgrey solid;
-}
-
-.document-panel:nth-child(even) {
-  background: lightgrey;
-}
-
 .document-header{
   @extend .content-subheader;
   margin-bottom:  1rem;
@@ -224,8 +226,9 @@ body {
 ******************************/
 
 .tag-panel {
+  @extend .content-panel;
   padding: 0.5rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   border-left: 3px darkgrey solid;
 }
 
@@ -246,4 +249,135 @@ body {
   @extend .btn;
   @extend .btn-xs;
   @extend .btn-default;
+}
+
+.create-feed {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-success;
+}
+
+/******************************
+  Note Elements 
+******************************/
+
+.document-contents {
+  border: 1px lightgrey solid;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.document-paragraph {
+  margin-top: 1rem;
+}
+
+.new-note {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+  float: left;
+  margin-right: 1rem;
+  padding: 0.5rem;
+}
+
+.note-contents {
+  color: grey;
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-left: 1rem;
+  padding-top: 1rem;
+}
+
+.note-display {
+  font-size: 1.5rem;
+}
+
+.paragraph-as-note {
+  @extend .note-contents;
+}
+
+.summary-content {
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.content-panel {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 5px darkgrey solid;
+  border-top: 1px darkgrey solid;
+}
+
+.content-panel:nth-child(even) {
+  background: lightgrey;
+}
+
+/******************************
+  Calendar Elements 
+******************************/
+
+
+// Styles from simple_calendar gem
+.simple-calendar {
+
+  .calendar-header{
+    margin: 1rem 0;
+
+    .previous-button{
+      @extend .btn;
+      @extend .btn-xs;
+      @extend .btn-default;
+    }
+    .next-button{
+      @extend .btn;
+      @extend .btn-xs;
+      @extend .btn-default;
+    }
+
+    .month-year{
+      font-size: 2rem;
+    }
+  }
+
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+  }
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+  .previous-button{
+    font-size: 1rem;
+  }
+}
+
+.event-button{
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-info;
+  margin-bottom: 2px;
+}
+
+.event-header {
+  font-size: 3rem;
+}
+.event-content {
+  font-style: 2rem;
 }

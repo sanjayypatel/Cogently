@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005172859) do
+ActiveRecord::Schema.define(version: 20151103185610) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -20,10 +20,40 @@ ActiveRecord::Schema.define(version: 20151005172859) do
     t.datetime "updated_at",      null: false
     t.integer  "organization_id"
     t.integer  "user_id"
+    t.text     "content"
   end
 
   add_index "documents", ["organization_id"], name: "index_documents_on_organization_id"
   add_index "documents", ["user_id"], name: "index_documents_on_user_id"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "start_time"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "events", ["organization_id"], name: "index_events_on_organization_id"
+
+  create_table "events_summaries", id: false, force: :cascade do |t|
+    t.integer "event_id",   null: false
+    t.integer "summary_id", null: false
+  end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  create_table "feeds", force: :cascade do |t|
+    t.string   "tag"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "feeds", ["user_id"], name: "index_feeds_on_user_id"
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +65,17 @@ ActiveRecord::Schema.define(version: 20151005172859) do
   add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id"
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
 
+  create_table "notes", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "paragraph_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "notes", ["paragraph_id"], name: "index_notes_on_paragraph_id"
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",   null: false
@@ -43,6 +84,22 @@ ActiveRecord::Schema.define(version: 20151005172859) do
   end
 
   add_index "organizations", ["moderator_id"], name: "index_organizations_on_moderator_id"
+
+  create_table "paragraphs", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "paragraphs", ["document_id"], name: "index_paragraphs_on_document_id"
+
+  create_table "summaries", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

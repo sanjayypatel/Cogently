@@ -4,9 +4,20 @@ class Organization < ActiveRecord::Base
   has_many :invitees, class_name: "User", foreign_key: "invited_organization_id"
   belongs_to :moderator, class_name: "User", foreign_key: "moderator_id"
   has_many :documents
+  has_many :summaries, :through => :documents
+  has_many :events
   acts_as_tagger
+
   def search_for_invitable_users(query)
     members_and_invitees = self.users.to_a + self.invitees.to_a
     User.where("email like ?", "%#{query}%").to_a - members_and_invitees
+  end
+
+  def search_members(query)
+    self.users.where("email like ?", "%#{query}%").to_a
+  end
+
+  def search_summaries(query)
+    self.summaries.joins(:document).where("documents.name like ?", "%#{query}%")
   end
 end
