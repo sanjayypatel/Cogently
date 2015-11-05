@@ -258,7 +258,7 @@ body {
 }
 
 /******************************
-  Document Elements 
+  Note Elements 
 ******************************/
 
 .document-contents {
@@ -270,6 +270,16 @@ body {
 
 .document-paragraph {
   margin-top: 1rem;
+}
+
+.note-panel {
+  padding: 1rem;
+  margin: 1rem;
+  border-left: 5px darkgrey solid;
+}
+
+.note-panel:nth-child(odd) {
+  background: lightgrey;
 }
 
 .new-note {
@@ -285,5 +295,30 @@ body {
   color: grey;
   font-size: 1.25rem;
   font-style: italic;
-  margin-left: 4rem;
+  margin-left: 1rem;
+  padding-top: 1rem;
+}
+
+.note-display {
+  font-size: 1.5rem;
+}
+
+.paragraph-as-note {
+  @extend .note-contents;
+}
+
+.summary-content {
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.content-panel {
+  padding: 1rem;
+  margin: 1rem;
+  border-left: 5px darkgrey solid;
+}
+
+.content-panel:nth-child(odd) {
+  background: lightgrey;
 }

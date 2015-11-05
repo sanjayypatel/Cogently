@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020175610) do
+ActiveRecord::Schema.define(version: 20151026181958) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 20151020175610) do
   end
 
   add_index "paragraphs", ["document_id"], name: "index_paragraphs_on_document_id"
+
+  create_table "summaries", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

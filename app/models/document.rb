@@ -5,6 +5,7 @@ class Document < ActiveRecord::Base
   belongs_to :user
   has_many :paragraphs
   has_many :notes, through: :paragraphs
+  has_one :summary
   acts_as_taggable
   scope :by_recently_updated, -> {order(created_at: :desc)}
 
