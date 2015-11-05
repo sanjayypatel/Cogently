@@ -1,10 +1,11 @@
-.content-header Resend confirmation instructions
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .form-section
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, class: 'enter-text'
-  .form-section
-    = f.submit "Resend confirmation instructions", class: 'submit-form'
-= render "devise/shared/links"
+.centered-content
+  .content-header Resend confirmation instructions
+  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = devise_error_messages!
+    .form-section
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, class: 'enter-text'
+    .form-section
+      = f.submit "Resend confirmation instructions", class: 'submit-form'
+  = render "devise/shared/links"

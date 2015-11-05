@@ -1,19 +1,22 @@
 .sidebar-section
   .sidebar-title
-    = "User Info "
-    - if policy(user).edit?
-      = link_to "Edit", edit_user_registration_path(user)
+    = "User Info, "
+    = link_to "Edit", edit_user_registration_path(user)
   - if user.is_confirmed_member?
     .sidebar-section
       .sidebar-content-label Member of
       .sidebar-content= "#{user.organization.name}"
-      .sidebar-content= link_to "View", organization_path(user.organization)
+      .sidebar-content= link_to "Organization Profile", organization_path(user.organization)
+      - if policy(user.organization).edit?
+        .sidebar-section
+          .sidebar-content= link_to "Edit Organization", edit_organization_path(user.organization)
   .sidebar-section
     .sidebar-content-label User Name
     .sidebar-content= user.name
   .sidebar-section
     .sidebar-content-label Email
     .sidebar-content= user.email
-  .sidebar-section
-    .sidebar-content-label Feeds
-    .sidebar-content= feeds_to_links(user)
+  - if user.is_confirmed_member?
+    .sidebar-section
+      .sidebar-content-label Feeds
+      .sidebar-content= feeds_to_links(user)

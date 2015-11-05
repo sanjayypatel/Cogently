@@ -1,15 +1,22 @@
 .sidebar-section
   .sidebar-title Options
-  .sidebar-section
-    .sidebar-content= link_to "My Docs", user_path(user)
-  .sidebar-section
-    .sidebar-content= link_to "My Feeds", user_feeds_path(user)
-  .sidebar-section
-    .sidebar-content=  link_to "Group Docs", organization_documents_path(user.organization)
-  - if policy(user.organization).edit?
+  - if user.is_confirmed_member?
     .sidebar-section
-      .sidebar-content= link_to "Edit Organization", edit_organization_path(user.organization)
-  .sidebar-section
-    .sidebar-content= link_to 'Upload New Doc', new_organization_document_path(user.organization)
-  .sidebar-section
-    .sidebar-content= link_to 'Create New Event', new_organization_event_path(user.organization)
+      .sidebar-content= link_to "My Docs", user_path(user)
+    .sidebar-section
+      .sidebar-content= link_to "My Feeds", user_feeds_path(user)
+    .sidebar-section
+      .sidebar-content=  link_to "Group Docs", organization_documents_path(user.organization)
+    .sidebar-title Actions
+    - if policy(user.organization).edit?
+      .sidebar-section
+        .sidebar-content= link_to "Edit Organization", edit_organization_path(user.organization)
+    .sidebar-section
+      .sidebar-content= link_to 'Upload New Doc', new_organization_document_path(user.organization)
+    .sidebar-section
+      .sidebar-content= link_to 'Create New Event', new_organization_event_path(user.organization)
+  - else
+    .sidebar-section
+      .sidebar-content
+        = "Looks like you haven't joined an organization yet. Check with your group manager to get invited to an existing organization or "
+        = link_to "create your own.", new_organization_path

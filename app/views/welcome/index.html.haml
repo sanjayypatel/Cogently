@@ -1,2 +1,7 @@
-.content-header Cogently
-%p An executive summary app.
+.main-content
+  .content-header Cogently
+  %p An executive summary app.
+.sidebar
+  - if user_signed_in?
+    = render partial: 'users/info', locals: {user: current_user}
+    = render partial: 'users/options', locals: {user: current_user}
