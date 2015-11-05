@@ -1,0 +1,13 @@
+.content-panel
+  .panel-header= document.name
+  .panel-link
+    = link_to 'View Document', organization_document_path(document.organization, document)
+    = ', '
+    = link_to 'Edit Document', edit_organization_document_path(document.organization, document)
+    = ', '
+    =link_to 'View Original', document.file.url
+  .panel-text
+    = "Uploaded by #{document.user.name} on #{document.created_at.strftime("%m/%d/%Y %H:%M %p")}"
+    .tag-links
+      = 'Tags: '
+      = tags_to_links(document.tags)

@@ -34,32 +34,19 @@
                 = "#{member.role.capitalize}"
       .tab-pane#documents
         - @documents.each do |document|
-          .content-panel
-            .document-header= document.name
-            .document-options
-              = link_to 'View', organization_document_path(@organization, document)
-              = link_to 'Edit', edit_organization_document_path(@organization, document)
-              .tag-links
-                = 'Tags: '
-                = tags_to_links(document.tags)
+          =render partial: 'documents/panel', locals: {document: document}
       .tab-pane#tags
         - @tags.each do |tag|
-          .content-panel
-            .tag-header= "#{tag.name}"
-            .tag-header= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)
-            = form_for [current_user, Feed.new] do |f|
-              = f.hidden_field :tag, value: tag.name
-              = f.hidden_field :user_id, value: current_user.id
-              = f.submit 'Create Custom Feed', class: 'create-feed'
+          =render partial: 'tags/panel', locals: {tag: tag}
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}
   .sidebar-section
     .sidebar-title Trending Tags
     - @trending_tags.each do |tag|
-      .tag-panel
-        .tag-header= "#{tag.name}"
-        .tag-header= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)
+      .sidebar-panel
+        .sidebar-panel-header= "#{tag.name}"
+        .sidebar-panel-link= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)
         = form_for [current_user, Feed.new] do |f|
           = f.hidden_field :tag, value: tag.name
           = f.hidden_field :user_id, value: current_user.id

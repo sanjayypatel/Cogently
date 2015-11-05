@@ -4,14 +4,7 @@
   .content-title My Docs
   - if @documents
     - @documents.each do |document|
-      .content-panel
-        .document-header= document.name
-        .document-options
-          = link_to 'View', organization_document_path(@organization, document)
-          = link_to 'Edit', edit_organization_document_path(@organization, document)
-          .tag-links
-            = 'Tags: '
-            = tags_to_links(document.tags)
+      =render partial: 'documents/panel', locals: {document: document}
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}

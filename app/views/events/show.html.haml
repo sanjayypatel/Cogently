@@ -1,31 +1,21 @@
 .main-content
-  .content-title= "#{@event.title}"
-  .content-header Attendees
-  .table-header
-    .col-md-3
-      .content-subheader= 'Name'
-    .col-md-3
-      .content-subheader= 'Email'
-    .col-md-6
-      .content-subheader= 'Role'
-  - @attendees.each do |attendee|
-    .table-row
-      .small-table-col
-        = "#{attendee.name}"
-      .small-table-col
-        = "#{attendee.email}"
-      .large-table-col
-        = "#{attendee.role.capitalize}"
-  .content-header Documents
+  .content-title= "#{@event.title} Documents"
   - @summaries.each do |summary|
-    .content-panel
-      .content-header= "#{summary.document.name} Summary"
-      .summary-content= summary.body
-      .content-subheader Notes
-      - summary.document.notes.each do |note|
-        .content-panel
-          .content-subheader= note.paragraph.content.html_safe
-          .note-display
-            = note.to_s
+    =render partial: 'summaries/panel', locals: {summary: summary}
 .sidebar
-  = link_to "Edit", edit_organization_event_path(@organization, @event)
+  =render partial: 'events/info', locals: {event: @event}
+  .sidebar-section
+    .sidebar-title
+      = 'Attendees, '
+      = link_to 'Edit', edit_organization_event_path(@organization, @event)
+    .table-header
+      .col-md-3
+        .sidebar-content-label= 'Name'
+      .col-md-6
+        .sidebar-content-label= 'Email'
+    - @attendees.each do |attendee|
+      .table-row
+        .small-table-col
+          = "#{attendee.name}"
+        .large-table-col
+          = "#{attendee.email}"
