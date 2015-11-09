@@ -1,6 +1,9 @@
 .main-content
   - if current_user.has_pending_invitation?
     = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
+  - if @next_event
+    .content-header My Next Event
+    =render partial: 'events/panel', locals: {event: @next_event}
   .content-title My Docs
   - if @documents
     - @documents.each do |document|

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       @organization = @user.organization
       @documents = @user.documents.by_recently_updated
     end
+    @next_event = @user.next_upcoming_event
     @feeds = @user.feeds
   end
 

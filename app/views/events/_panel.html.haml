@@ -1,0 +1,10 @@
+.content-panel
+  .panel-header= "#{event.title}"
+  .panel-title Date
+  .panel-text= "#{event.start_time.strftime("%m/%d/%Y")}"
+  .panel-title Attendees
+  - event.users.each do |user|
+    .panel-text= "#{user.name}, #{user.email}"
+.panel-header Documents
+- event.summaries.each do |summary|
+  =render partial: 'summaries/panel', locals: {summary: summary}

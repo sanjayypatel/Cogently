@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
     if current_user.has_pending_invitation? || !current_user.is_confirmed_member?
       user_path(current_user)
     else
-      organization_path(current_user.organization)
+      if current_user.manager?
+        user_path(current_user)
+      else
+        organization_path(current_user.organization)
+      end
     end
   end
 
