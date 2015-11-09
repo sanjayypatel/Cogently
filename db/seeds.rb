@@ -1,6 +1,6 @@
-  require 'rubygems'
-  require 'pdf/reader'
-  require 'uri'
+require 'rubygems'
+require 'pdf/reader'
+require 'uri'
 
 # Seed Organizations
 first_organization = Organization.new(
@@ -88,6 +88,7 @@ end
   reader = PDF::Reader.new(io)
   document.content = document.process_new_document(reader.to_html)
   document.save!
+  first_organization.tag(document, on: :tags, with: "tag#{n}")
   summary = Summary.new(
     body: "Summary for document#{n + 1}",
     document: document
@@ -106,6 +107,7 @@ end
   reader = PDF::Reader.new(io)
   document.content = document.process_new_document(reader.to_html)
   document.save!
+  second_organization.tag(document, on: :tags, with: "tag#{n + 6}")
   summary = Summary.new(
     body: "Summary for document#{n + 6}",
     document: document
@@ -136,6 +138,17 @@ end
   event.summaries << second_organization.documents.first.summary
   event.save!
 end
+
+#Seed Feeds
+tags = ActsAsTaggableOn::Tag.all
+tags.each_with_index do |tag, index|
+  feed = Feed.new(
+    tag: tag.name,
+    user: User.find(1)
+  )
+  feed.save!
+end
+
 puts "Finished Seeding"
 puts "#{User.count} users created."
 puts "#{Organization.count} organizations created."
@@ -143,3 +156,5 @@ puts "#{Membership.count} memberships created."
 puts "#{Document.count} documents created."
 puts "#{Summary.count} summaries created."
 puts "#{Event.count} events created."
+puts "#{ActsAsTaggableOn::Tag.count} tags created."
+puts "#{Feed.count} feeds created."
