@@ -1,6 +1,7 @@
 class Document < ActiveRecord::Base
   require 'nokogiri'
   mount_uploader :file, FileUploader
+  alias_attribute :sort_date, :updated_at
   belongs_to :organization
   belongs_to :user
   has_many :paragraphs

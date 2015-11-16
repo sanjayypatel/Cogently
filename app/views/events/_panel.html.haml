@@ -1,10 +1,18 @@
 .content-panel
-  .panel-header= "#{event.title}"
-  .panel-title Date
-  .panel-text= "#{event.start_time.strftime("%m/%d/%Y")}"
-  .panel-title Attendees
-  - event.users.each do |user|
-    .panel-text= "#{user.name}, #{user.email}"
-.panel-header Documents
-- event.summaries.each do |summary|
-  =render partial: 'summaries/panel', locals: {summary: summary}
+  .panel-header
+    .glyphicon.glyphicon-calendar
+    = "#{event.title}, #{event.start_time.strftime("%m/%d/%Y")}"
+  .panel-title Options
+  .panel-link
+    = link_to 'View Event', organization_event_path(event.organization, event)
+    = ', '
+    = link_to 'Edit Event', edit_organization_event_path(event.organization, event)
+  .row
+    .col-md-6
+      .panel-title Attendees
+      - event.users.each do |user|
+        .panel-text= "#{user.name}, #{user.email}"
+    .col-md-6
+      .panel-title= pluralize(event.summaries.count, 'Document')
+      .panel-text
+        = summaries_to_links(event)

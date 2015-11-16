@@ -328,10 +328,19 @@ body {
 .sidebar-panel-link {
   margin-left: 0.5rem;
 }
+
+/******************************
+  Event Elements 
+******************************/
+
+.show-all-events {
+  float: right;
+}
+
+
 /******************************
   Calendar Elements 
 ******************************/
-
 
 // Styles from simple_calendar gem
 .simple-calendar {

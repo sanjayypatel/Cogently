@@ -5,6 +5,15 @@ module DocumentsHelper
     tags.map { |t| link_to t, tag_path(t.id) }.join(', ').html_safe
   end
 
+  def feeds_to_links(user)
+    return "" if user.feeds.nil?
+    user.feeds.map { |feed| link_to feed.tag, user_feed_path(user, feed) }.join(', ').html_safe
+  end
+
+  def is_document?(item)
+    return item.class.name == "Document"
+  end
+
   module ExtractImages
 
     class Extractor

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       if current_user.manager?
         user_path(current_user)
       else
-        organization_path(current_user.organization)
+        organization_documents_path(current_user.organization)
       end
     end
   end

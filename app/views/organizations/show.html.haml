@@ -4,13 +4,19 @@
   .tabbable.tabs-left
     %ul.nav.nav-tabs
       %li.active
-        %a{href: "#members", 'data-toggle' => 'tab'} Members
-      %li
         %a{href: "#documents", 'data-toggle' => 'tab'} Documents
       %li
         %a{href: "#tags", 'data-toggle' => 'tab'} Tags
+      %li
+        %a{href: "#members", 'data-toggle' => 'tab'} Members
     .tab-content
-      .tab-pane.active#members
+      .tab-pane.active#documents
+        - @documents.each do |document|
+          =render partial: 'documents/panel', locals: {document: document}
+      .tab-pane#tags
+        - @tags.each do |tag|
+          =render partial: 'tags/panel', locals: {tag: tag}
+      .tab-pane#members
         .profile-section
           .content-header Moderator:
           .moderator-header= "#{@moderator.name}"
@@ -32,12 +38,6 @@
                 = "#{member.email}"
               .large-table-col
                 = "#{member.role.capitalize}"
-      .tab-pane#documents
-        - @documents.each do |document|
-          =render partial: 'documents/panel', locals: {document: document}
-      .tab-pane#tags
-        - @tags.each do |tag|
-          =render partial: 'tags/panel', locals: {tag: tag}
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}

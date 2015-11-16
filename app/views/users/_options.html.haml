@@ -2,11 +2,13 @@
   .sidebar-title Options
   - if user.is_confirmed_member?
     .sidebar-section
-      .sidebar-content= link_to "My Docs", user_path(user)
+      .sidebar-content= link_to "Home", user_path(user)
     .sidebar-section
       .sidebar-content= link_to "My Feeds", user_feeds_path(user)
     .sidebar-section
       .sidebar-content=  link_to "Group Docs", organization_documents_path(user.organization)
+    .sidebar-section
+      .sidebar-content= link_to "My Calendar", organization_events_path(user.organization)
     .sidebar-title Actions
     - if policy(user.organization).edit?
       .sidebar-section

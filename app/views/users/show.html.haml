@@ -2,12 +2,17 @@
   - if current_user.has_pending_invitation?
     = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
   - if @next_event
-    .content-header My Next Event
+    .content-title
+      = "My Next Event"
     =render partial: 'events/panel', locals: {event: @next_event}
-  .content-title My Docs
-  - if @documents
-    - @documents.each do |document|
-      =render partial: 'documents/panel', locals: {document: document}
+    .show-all-events= link_to "Show All Events", organization_events_path(current_user.organization)
+  .content-title My Feed
+  - if @feed_items
+    - @feed_items.each do |item|
+      - if is_document?(item)
+        =render partial: 'documents/panel', locals: {document: item}
+      - else
+        =render partial: 'events/panel', locals: {event: item}
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}
