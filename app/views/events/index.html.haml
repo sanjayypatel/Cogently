@@ -1,4 +1,5 @@
 .main-content
+  = render partial: 'users/controls', locals: {user: current_user}
   =month_calendar events: @events do |date, events|
     - capture_haml do
       = date.day

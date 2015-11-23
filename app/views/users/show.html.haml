@@ -1,6 +1,7 @@
 .main-content
   - if current_user.has_pending_invitation?
     = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
+  = render partial: 'users/controls', locals: {user: current_user}
   - if @next_event
     .content-title
       = "My Next Event"

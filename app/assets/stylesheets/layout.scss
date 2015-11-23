@@ -419,3 +419,31 @@ body {
 .event-content {
   font-style: 2rem;
 }
+
+/******************************
+  Calendar Elements 
+******************************/
+.control-bar {
+  @extend .btn-group;
+}
+.control-bar-button {
+  @extend .col-lg-2;
+}
+.button-styles {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-default;
+  padding: 2rem;
+}
+.button-styles-new {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-info;
+  padding: 2rem;
+}
+.button-icon {
+  font-size: 2rem;
+}
+.button-text {
+  font-size: 1.5rem;
+}

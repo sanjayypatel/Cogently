@@ -1,4 +1,5 @@
 .main-content
+  = render partial: 'users/controls', locals: {user: current_user}
   .content-title Tags
   .every-other
     - @tags.each do |tag|

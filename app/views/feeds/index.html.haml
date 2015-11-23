@@ -1,4 +1,5 @@
 .main-content
+  = render partial: 'users/controls', locals: {user: current_user}
   .content-title My Feeds
   .every-other
     - @feeds.each do |feed|
