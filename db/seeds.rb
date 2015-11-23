@@ -58,7 +58,7 @@ membership.save!
   user.save!
   membership = Membership.new(
     user: user,
-    organization: organizations.sample
+    organization: first_organization
   )
   membership.save!
 end

@@ -27,3 +27,5 @@
           = f.submit "Add Document to Event", class: 'invite-user'
       %br
   = render partial: 'summaries/search', locals: {organization: @organization, event: @event }
+  = render partial: 'users/info', locals: {user: current_user}
+  = render partial: 'users/options', locals: {user: current_user}

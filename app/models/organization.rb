@@ -20,4 +20,9 @@ class Organization < ActiveRecord::Base
   def search_summaries(query)
     self.summaries.joins(:document).where("documents.name like ?", "%#{query}%")
   end
+
+  def search_documents(query)
+    (self.documents.where("documents.name like ?", "%#{query}%") +
+    self.documents.tagged_with("#{query}")).uniq
+  end
 end

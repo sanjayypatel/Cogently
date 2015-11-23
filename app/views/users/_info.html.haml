@@ -16,7 +16,7 @@
   .sidebar-section
     .sidebar-content-label Email
     .sidebar-content= user.email
-  - if user.is_confirmed_member?
+  - if user.is_confirmed_member? && user.feeds.count > 0
     .sidebar-section
       .sidebar-content-label Feeds
       .sidebar-content= feeds_to_links(user)

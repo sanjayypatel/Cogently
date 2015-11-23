@@ -1,53 +1,26 @@
 .main-content
-  .content-title
-    = @organization.name
-  .tabbable.tabs-left
-    %ul.nav.nav-tabs
-      %li.active
-        %a{href: "#documents", 'data-toggle' => 'tab'} Documents
-      %li
-        %a{href: "#tags", 'data-toggle' => 'tab'} Tags
-      %li
-        %a{href: "#members", 'data-toggle' => 'tab'} Members
-    .tab-content
-      .tab-pane.active#documents
-        - @documents.each do |document|
-          =render partial: 'documents/panel', locals: {document: document}
-      .tab-pane#tags
-        - @tags.each do |tag|
-          =render partial: 'tags/panel', locals: {tag: tag}
-      .tab-pane#members
-        .profile-section
-          .content-header Moderator:
-          .moderator-header= "#{@moderator.name}"
-          .moderator-header= "#{@moderator.email}"
-        .profile-section
-          .content-header Members
-          .table-header
-            .col-md-3
-              .content-subheader= 'Name'
-            .col-md-3
-              .content-subheader= 'Email'
-            .col-md-6
-              .content-subheader= 'Role'
-          -@members.each do |member|
-            .table-row
-              .small-table-col
-                = "#{member.name}"
-              .small-table-col
-                = "#{member.email}"
-              .large-table-col
-                = "#{member.role.capitalize}"
+  .content-title= @organization.name
+  .profile-section
+    .content-header Moderator:
+    .moderator-header= "#{@moderator.name}"
+    .moderator-header= "#{@moderator.email}"
+  .profile-section
+    .content-header Members
+    .table-header
+      .col-md-3
+        .content-subheader= 'Name'
+      .col-md-3
+        .content-subheader= 'Email'
+      .col-md-6
+        .content-subheader= 'Role'
+    -@members.each do |member|
+      .table-row
+        .small-table-col
+          = "#{member.name}"
+        .small-table-col
+          = "#{member.email}"
+        .large-table-col
+          = "#{member.role.capitalize}"
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}
-  .sidebar-section
-    .sidebar-title Trending Tags
-    - @trending_tags.each do |tag|
-      .sidebar-panel
-        .sidebar-panel-header= "#{tag.name}"
-        .sidebar-panel-link= link_to "(#{tag.taggings.count} tagged documents)", tag_path(tag)
-        = form_for [current_user, Feed.new] do |f|
-          = f.hidden_field :tag, value: tag.name
-          = f.hidden_field :user_id, value: current_user.id
-          = f.submit 'Create Custom Feed', class: 'create-feed'
