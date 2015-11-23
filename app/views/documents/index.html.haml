@@ -1,7 +1,8 @@
 .main-content
   .content-title Documents
-  - @documents.each do |document|
-    = render partial: 'documents/panel', locals: {document: document}
+  .every-other
+    - @documents.each do |document|
+      = render partial: 'documents/panel', locals: {document: document}
 .sidebar
   .sidebar-section
     .sidebar-title Search Documents

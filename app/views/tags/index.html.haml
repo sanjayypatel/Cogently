@@ -1,7 +1,8 @@
 .main-content
   .content-title Tags
-  - @tags.each do |tag|
-    =render partial: 'tags/panel', locals: {tag: tag}
+  .every-other
+    - @tags.each do |tag|
+      =render partial: 'tags/panel', locals: {tag: tag}
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}

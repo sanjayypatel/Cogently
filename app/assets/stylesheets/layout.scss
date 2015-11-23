@@ -289,10 +289,25 @@ body {
   border-left: 5px darkgrey solid;
   border-top: 1px darkgrey solid;
 }
-
-.content-panel:nth-child(even) {
-  background: lightgrey;
+.every-other {
+  .content-panel:nth-child(even) {
+    background: lightgrey;
+  }
 }
+.color-sorted {
+  .document-panel{
+    .content-panel{
+      background-color: white;
+    }
+  }
+  .event-panel{
+    .content-panel{
+      background-color: #D8F5FF;
+    }
+  }
+}
+
+
 .panel-header{
   font-size: 2rem;
   margin-bottom: 1rem;
