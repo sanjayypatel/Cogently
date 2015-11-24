@@ -16,7 +16,9 @@ class UsersController < ApplicationController
       @membership = @user.membership
       @organization = @user.organization
       @documents = @user.documents.by_recently_updated
+      @feed_items = (@organization.documents + @user.events).sort{|a,b| a.sort_date <=> b.sort_date}
     end
+    @next_event = @user.next_upcoming_event
     @feeds = @user.feeds
   end
 

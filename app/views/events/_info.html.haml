@@ -1,0 +1,9 @@
+.sidebar-section
+  .sidebar-title 
+    = "Event Info, "
+    = link_to "Edit", edit_organization_event_path(event.organization, event)
+  .sidebar-section
+    .sidebar-content-label Title
+    .sidebar-content= "#{event.title}"
+    .sidebar-content-label Date
+    .sidebar-content= "#{event.start_time.strftime("%m/%d/%Y")}"

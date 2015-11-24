@@ -1,0 +1,14 @@
+.content-panel
+  .panel-header= "#{summary.document.name} Summary"
+  .panel-links
+    = link_to 'View Document', organization_document_path(summary.document.organization, summary.document)
+    = ', '
+    = link_to 'Edit Document', edit_organization_document_path(summary.document.organization, summary.document)
+    = ', '
+    = link_to 'View Original', summary.document.file.url
+  .summary-content= summary.body
+  .panel-title Notes
+  - summary.document.notes.each do |note|
+    .panel-text= note.paragraph.content.html_safe
+    .note-display
+      = note.to_s

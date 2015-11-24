@@ -5,7 +5,12 @@ class DocumentsController < ApplicationController
 
   def index
     @organization = current_user.organization
-    @documents = @organization.documents
+    if params[:search]
+      @documents = @organization.search_documents(params[:search])
+      @query = params[:search]
+    else
+      @documents = @organization.documents
+    end
   end
 
   def new

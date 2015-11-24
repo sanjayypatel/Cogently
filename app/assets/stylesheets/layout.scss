@@ -53,10 +53,6 @@ body {
   @extend .col-md-6;
   @extend .col-md-offset-3;
 }
-.centered-content-full{
-  @extend .col-md-10;
-  @extend .col-md-offset-1;
-}
 .content-title {
   font-size: 5rem;
   padding-bottom: 2rem;
@@ -224,27 +220,6 @@ body {
 /******************************
   Tag Elements 
 ******************************/
-
-.tag-panel {
-  @extend .content-panel;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-left: 3px darkgrey solid;
-}
-
-.tag-panel:nth-child(even) {
-  background: lightgrey;
-}
-
-.tag-header{
-  font-size: 1.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.tag-options {
-  margin-left: 0.5rem;
-}
-
 .view-tag{
   @extend .btn;
   @extend .btn-xs;
@@ -291,6 +266,7 @@ body {
 
 .note-display {
   font-size: 1.5rem;
+  font-style: italic;
 }
 
 .paragraph-as-note {
@@ -303,21 +279,83 @@ body {
   margin-bottom: 1rem;
 }
 
+/******************************
+  Panel Elements
+******************************/
+
 .content-panel {
   padding: 1rem;
   margin: 1rem 0;
   border-left: 5px darkgrey solid;
   border-top: 1px darkgrey solid;
 }
+.every-other {
+  .content-panel:nth-child(even) {
+    background: lightgrey;
+  }
+}
+.color-sorted {
+  .document-panel{
+    .content-panel{
+      background-color: white;
+    }
+  }
+  .event-panel{
+    .content-panel{
+      background-color: #D8F5FF;
+    }
+  }
+}
 
-.content-panel:nth-child(even) {
+
+.panel-header{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.panel-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom:  1rem;
+}
+.panel-link {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.panel-text {
+  font-size: 1.5rem;
+}
+.sidebar-panel {
+  @extend .content-panel;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-left: 3px darkgrey solid;
+}
+
+.sidebar-panel:nth-child(even) {
   background: lightgrey;
 }
+
+.sidebar-panel-header{
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar-panel-link {
+  margin-left: 0.5rem;
+}
+
+/******************************
+  Event Elements 
+******************************/
+
+.show-all-events {
+  float: right;
+}
+
 
 /******************************
   Calendar Elements 
 ******************************/
-
 
 // Styles from simple_calendar gem
 .simple-calendar {
@@ -380,4 +418,32 @@ body {
 }
 .event-content {
   font-style: 2rem;
+}
+
+/******************************
+  Calendar Elements 
+******************************/
+.control-bar {
+  @extend .btn-group;
+}
+.control-bar-button {
+  @extend .col-lg-2;
+}
+.button-styles {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-default;
+  padding: 2rem;
+}
+.button-styles-new {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-info;
+  padding: 2rem;
+}
+.button-icon {
+  font-size: 2rem;
+}
+.button-text {
+  font-size: 1.5rem;
 }

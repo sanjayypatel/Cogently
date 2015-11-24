@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
     role == 'staff'
   end
 
+  def next_upcoming_event
+    self.events.where('start_time >= ?', Date.today).order('start_time').last
+  end
+
 end
