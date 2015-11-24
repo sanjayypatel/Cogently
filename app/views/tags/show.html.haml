@@ -1,7 +1,0 @@
-.main-content
-  .content-header= "Documents Tagged with: #{@tag}"
-  - @documents.each do |document|
-    = render partial: 'documents/panel', locals: {document: document}
-.sidebar
-  = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

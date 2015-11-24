@@ -1,7 +1,0 @@
-.content-panel
-  .panel-header= "#{tag.name}"
-  .panel-link= link_to "#{tag.taggings.count} tagged documents", organization_documents_path(organization, :search => tag.name)
-  = form_for [current_user, Feed.new] do |f|
-    = f.hidden_field :tag, value: tag.name
-    = f.hidden_field :user_id, value: current_user.id
-    = f.submit 'Create Custom Feed', class: 'create-feed'
