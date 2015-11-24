@@ -1,6 +1,18 @@
 .main-content
   = render partial: 'users/controls', locals: {user: current_user}
-  .content-title Documents
+  - if @query.nil?
+    .content-title Documents
+  - else
+    .content-header= "Documents related to \'#{@query}\'"
+    - if !current_user.is_following?(@query)
+      = form_for [current_user, Feed.new] do |f|
+        = f.hidden_field :tag, value: @query
+        = f.hidden_field :user_id, value: current_user.id
+        = f.submit 'Follow this topic', class: 'create-feed'
+    - else
+      .content-subheader 
+        = 'You are currently following this topic.'
+        = link_to 'See your followed topics', user_feeds_path(current_user)
   .every-other
     - @documents.each do |document|
       = render partial: 'documents/panel', locals: {document: document}

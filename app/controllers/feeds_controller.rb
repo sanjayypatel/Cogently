@@ -31,7 +31,7 @@ class FeedsController < ApplicationController
     @feed = Feed.find(params[:id])
     @user = @feed.user
     @organization = @user.organization
-    @documents = @organization.documents.tagged_with(@feed.tag)
+    @documents = @organization.search_documents(@feed.tag)
   end
 
   private
@@ -39,4 +39,5 @@ class FeedsController < ApplicationController
   def feed_params
     params.require(:feed).permit(:tag, :user_id)
   end
+
 end

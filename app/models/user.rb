@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
     self.events.where('start_time >= ?', Date.today).order('start_time').last
   end
 
+  def is_following?(tag_name)
+    return !self.feeds.where(:tag => tag_name).empty?
+  end
+
 end

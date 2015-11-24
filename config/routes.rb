@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   resources :paragraphs, only: [] do
     resources :notes, except: [:index, :show]
   end
-  resources :tags, only: [:show, :index]
+  resources :tags, only: [:index]
   root to: 'welcome#index'
 end

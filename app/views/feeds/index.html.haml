@@ -1,11 +1,12 @@
 .main-content
   = render partial: 'users/controls', locals: {user: current_user}
-  .content-title My Feeds
+  .content-title My Topics
   .every-other
     - @feeds.each do |feed|
       .content-panel
-        .document-header= feed.tag
-        .document-header= link_to 'View', user_feed_path(feed.user, feed)
+        .panel-header= "Topic: \'#{feed.tag}\'"
+        .panel-link= link_to 'View Documents', user_feed_path(feed.user, feed)
+        .panel-link= button_to 'Stop following this topic'
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}

@@ -228,7 +228,6 @@ body {
 
 .create-feed {
   @extend .btn;
-  @extend .btn-xs;
   @extend .btn-success;
 }
 
@@ -306,8 +305,6 @@ body {
     }
   }
 }
-
-
 .panel-header{
   font-size: 2rem;
   margin-bottom: 1rem;

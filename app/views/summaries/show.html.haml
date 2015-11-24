@@ -17,7 +17,7 @@
       .glyphicon.glyphicon-tags
       ="Tags"
     .sidebar-content
-      .tag-lists= tags_to_links(@document.tags)
+      .tag-lists= tags_to_links(@document.organization, @document.tags)
     .sidebar-content-label Organization:
     .sidebar-content= "#{@organization.name}"
     .sidebar-content-label Orignally Uploaded by:

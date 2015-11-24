@@ -18,5 +18,5 @@
     .sidebar-content= user.email
   - if user.is_confirmed_member? && user.feeds.count > 0
     .sidebar-section
-      .sidebar-content-label Feeds
+      .sidebar-content-label Followed Topics
       .sidebar-content= feeds_to_links(user)

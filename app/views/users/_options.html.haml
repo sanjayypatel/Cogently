@@ -13,9 +13,7 @@
         .sidebar-section
           .sidebar-content= link_to "Group", organization_path(user.organization)
         .sidebar-section
-          .sidebar-content= link_to "Tags", tags_path
-        .sidebar-section
-          .sidebar-content= link_to "Feeds", user_feeds_path(user)
+          .sidebar-content= link_to "Topics", user_feeds_path(user)
     .sidebar-title Actions
     - if policy(user.organization).edit?
       .sidebar-section

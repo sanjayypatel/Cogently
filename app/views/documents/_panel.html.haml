@@ -14,4 +14,4 @@
   .panel-text= "Last updated on #{document.updated_at.strftime("%m/%d/%Y %H:%M %p")}"
   .panel-text.tag-links
     = 'Tags: '
-    = tags_to_links(document.tags)
+    = tags_to_links(document.organization, document.tags)

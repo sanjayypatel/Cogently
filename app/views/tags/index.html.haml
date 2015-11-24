@@ -3,7 +3,7 @@
   .content-title Tags
   .every-other
     - @tags.each do |tag|
-      =render partial: 'tags/panel', locals: {tag: tag}
+      =render partial: 'tags/panel', locals: {organization: current_user.organization, tag: tag}
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
   = render partial: 'users/options', locals: {user: current_user}
