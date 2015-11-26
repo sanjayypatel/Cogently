@@ -13,17 +13,25 @@
         .navigation-header
           - if user_signed_in? && current_user.is_confirmed_member?
             = link_to user_path(current_user), class: 'navigation-brand' do
-              %span.glyphicon.glyphicon-pencil= " Cogently"
+              = fa_icon "pencil", text:  "Cogently"
           -else
             = link_to root_path, class: 'navigation-brand' do
-              %span.glyphicon.glyphicon-pencil= " Cogently"
+              = fa_icon "pencil", text:  "Cogently"
         %ul.navigation-right
           - if user_signed_in?
-            %li= link_to (current_user.name || current_user.email), user_path(current_user)
-            %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+            %li
+              = link_to user_path(current_user) do
+                = fa_icon "user", text: (current_user.name || current_user.email)
+            %li
+              = link_to destroy_user_session_path, method: :delete do
+                = fa_icon "sign-out", text: "Sign Out"
           - else
-            %li= link_to "Sign In", new_user_session_path
-            %li= link_to "Sign Up", new_user_registration_path
+            %li
+              = link_to new_user_session_path do
+                = fa_icon "sign-in", text: "Sign In"
+            %li
+              = link_to new_user_registration_path do
+                = fa_icon "user-plus", text: "Sign Up"
       - if user_signed_in?
         = render partial: 'users/controls', locals: {user: current_user}
       - if flash[:notice]

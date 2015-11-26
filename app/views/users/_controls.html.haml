@@ -3,23 +3,23 @@
     .control-bar-button-group
       - if user.is_confirmed_member?
         = link_to new_organization_document_path(user.organization), class: 'button-styles-new' do
-          %span.button-icon.glyphicon.glyphicon-open-file
+          = fa_icon "file-pdf-o"
           New Doc
         = link_to new_organization_event_path(user.organization), class: 'button-styles-new' do
-          %span.button-icon.glyphicon.glyphicon-tasks
+          = fa_icon "calendar-plus-o"
           New Event
       = link_to user_path(user), class: 'button-styles' do
-        %span.button-icon.glyphicon.glyphicon-home
+        = fa_icon "home"
         Home
       - if user.is_confirmed_member?
         = link_to organization_documents_path(user.organization), class: 'button-styles' do
-          %span.button-icon.glyphicon.glyphicon-duplicate
+          = fa_icon "files-o"
           Docs
         = link_to organization_events_path(user.organization), class: 'button-styles' do
-          %span.button-icon.glyphicon.glyphicon-calendar
+          = fa_icon "calendar"
           Calendar
         = link_to user_feeds_path(user), class: 'button-styles' do
-          %span.button-icon.glyphicon.glyphicon-pushpin
+          = fa_icon "heart"
           Topics
   .control-bar-search
     - if user.is_confirmed_member?
@@ -28,4 +28,4 @@
           %input.enter-text#search{:placeholder => "Search documents...", :type => "text", :name => "search"}
           %span.input-group-btn
             %button.btn.btn.default{:type => "submit"}
-              %i.glyphicon.glyphicon-search
+              = fa_icon "search"

@@ -76,3 +76,5 @@ gem 'pdf-reader-html'
 gem 'nokogiri'
 
 gem 'simple_calendar'
+
+gem 'font-awesome-rails'

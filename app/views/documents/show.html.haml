@@ -4,7 +4,7 @@
   .document-contents
     - @paragraphs.each do |paragraph|
       .document-paragraph
-        = link_to '', new_paragraph_note_path(paragraph), class: 'new-note glyphicon glyphicon-pencil'
+        = link_to '', new_paragraph_note_path(paragraph), class: 'new-note fa fa-pencil'
         = paragraph.content.html_safe
       - if paragraph.notes
         - paragraph.notes.each do |note|
@@ -16,7 +16,7 @@
     .sidebar-content= link_to 'View Original', @document.file.url
     .sidebar-content= link_to 'Edit Document', edit_organization_document_path(@organization, @document)
     .sidebar-content-label
-      .glyphicon.glyphicon-tags
+      = fa_icon "tags"
       ="Tags"
     .sidebar-content
       .tag-lists= tags_to_links(@document.organization, @document.tags)
