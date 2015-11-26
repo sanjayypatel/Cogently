@@ -1,19 +1,31 @@
 .control-bar
-  = link_to new_organization_document_path(user.organization), class: 'button-styles-new' do
-    %span.button-icon.glyphicon.glyphicon-open-file
-    .button-text New Doc
-  = link_to new_organization_event_path(user.organization), class: 'button-styles-new' do
-    %span.button-icon.glyphicon.glyphicon-tasks
-    .button-text New Event
-  = link_to user_path(user), class: 'button-styles' do
-    %span.button-icon.glyphicon.glyphicon-home
-    .button-text Home
-  = link_to organization_documents_path(user.organization), class: 'button-styles' do
-    %span.button-icon.glyphicon.glyphicon-duplicate
-    .button-text Docs
-  = link_to organization_events_path(user.organization), class: 'button-styles' do
-    %span.button-icon.glyphicon.glyphicon-calendar
-    .button-text Calendar
-  = link_to user_feeds_path(user), class: 'button-styles' do
-    %span.button-icon.glyphicon.glyphicon-pushpin
-    .button-text Topics
+  .control-bar-toolbar
+    .control-bar-button-group
+      - if user.is_confirmed_member?
+        = link_to new_organization_document_path(user.organization), class: 'button-styles-new' do
+          %span.button-icon.glyphicon.glyphicon-open-file
+          New Doc
+        = link_to new_organization_event_path(user.organization), class: 'button-styles-new' do
+          %span.button-icon.glyphicon.glyphicon-tasks
+          New Event
+      = link_to user_path(user), class: 'button-styles' do
+        %span.button-icon.glyphicon.glyphicon-home
+        Home
+      - if user.is_confirmed_member?
+        = link_to organization_documents_path(user.organization), class: 'button-styles' do
+          %span.button-icon.glyphicon.glyphicon-duplicate
+          Docs
+        = link_to organization_events_path(user.organization), class: 'button-styles' do
+          %span.button-icon.glyphicon.glyphicon-calendar
+          Calendar
+        = link_to user_feeds_path(user), class: 'button-styles' do
+          %span.button-icon.glyphicon.glyphicon-pushpin
+          Topics
+  .control-bar-search
+    - if user.is_confirmed_member?
+      = form_tag organization_documents_path(user.organization), method: "get" do
+        .input-group.input-group-md
+          %input.enter-text#search{:placeholder => "Search documents...", :type => "text", :name => "search"}
+          %span.input-group-btn
+            %button.btn.btn.default{:type => "submit"}
+              %i.glyphicon.glyphicon-search

@@ -1,11 +1,13 @@
 .main-content
-  = render partial: 'users/controls', locals: {user: current_user}
-  .content-title My Feeds
-  .every-other
-    - @feeds.each do |feed|
-      .content-panel
-        .document-header= feed.tag
-        .document-header= link_to 'View', user_feed_path(feed.user, feed)
+  .content-header Topics you are currently following:
+  - if @feeds.count > 0
+    .every-other
+      - @feeds.each do |feed|
+        .content-panel
+          .panel-header= "Topic: \'#{feed.tag}\'"
+          .panel-link= link_to 'View Documents', user_feed_path(feed.user, feed), class: 'btn btn-default'
+          .panel-link= link_to 'Unfollow this topic', [feed.user, feed], method: :delete, class: 'btn btn-default'
+  - else
+    .nothing-to-display You haven't followed any topics.
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

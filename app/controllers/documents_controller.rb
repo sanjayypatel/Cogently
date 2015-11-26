@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
       @query = params[:search]
     else
       @documents = @organization.documents
+      @query = nil
     end
   end
 

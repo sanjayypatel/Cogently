@@ -1,16 +1,22 @@
 .main-content
-  = render partial: 'users/controls', locals: {user: current_user}
-  .content-title Documents
-  .every-other
-    - @documents.each do |document|
-      = render partial: 'documents/panel', locals: {document: document}
+  - if @query.nil?
+    .content-title Documents
+  - else
+    .content-header= "Documents related to \'#{@query}\'"
+    - if !current_user.is_following?(@query)
+      = form_for [current_user, Feed.new] do |f|
+        = f.hidden_field :tag, value: @query
+        = f.hidden_field :user_id, value: current_user.id
+        = f.submit 'Follow this topic', class: 'create-feed'
+    - else
+      .content-subheader 
+        = 'You are currently following this topic.'
+        = link_to 'See your followed topics', user_feeds_path(current_user)
+  - if @documents.count > 0
+    .every-other
+      - @documents.each do |document|
+        = render partial: 'documents/panel', locals: {document: document}
+  - else
+    .nothing-to-display No documents found.
 .sidebar
-  .sidebar-section
-    .sidebar-title Search Documents
-    = form_tag organization_documents_path(@organization), method: "get" do
-      .form-section
-        = text_field_tag :search, params[:search], class: 'enter-text', placeholder: 'Search for documents'
-      .form-section
-        = submit_tag "Search", class: 'submit-form'
   = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

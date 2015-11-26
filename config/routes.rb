@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:invitations => "invitations"}
   resources :users, only: [:update, :show] do
-    resources :feeds, only: [:create, :update, :show, :index]
+    resources :feeds, only: [:create, :update, :show, :index, :destroy]
   end
   patch 'users/:id/invite' => 'users#invite', as: 'invite_user'
   patch 'users/:id/deny' => 'users#deny', as: 'deny_invitation'
@@ -19,6 +19,5 @@ Rails.application.routes.draw do
   resources :paragraphs, only: [] do
     resources :notes, except: [:index, :show]
   end
-  resources :tags, only: [:show, :index]
   root to: 'welcome#index'
 end

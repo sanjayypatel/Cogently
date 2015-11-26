@@ -19,7 +19,7 @@
       .glyphicon.glyphicon-tags
       ="Tags"
     .sidebar-content
-      .tag-lists= tags_to_links(@document.tags)
+      .tag-lists= tags_to_links(@document.organization, @document.tags)
     .sidebar-content-label Organization:
     .sidebar-content= "#{@organization.name}"
     .sidebar-content-label Orignally Uploaded by:
@@ -27,5 +27,3 @@
   .sidebar-section
     .sidebar-title Summary
     = render partial: 'summaries/form', locals: {document: @document, summary: @summary}
-  = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

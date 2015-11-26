@@ -2,11 +2,14 @@
   .content-header= "#{@document.name} Summary"
   .summary-content= @summary.body
   .content-subheader Notes
-  - @notes.each do |note|
-    .content-panel
-      .content-subheader= note.paragraph.content.html_safe
-      .note-display
-        = note.to_s
+  - if @notes.count > 0
+    - @notes.each do |note|
+      .content-panel
+        .content-subheader= note.paragraph.content.html_safe
+        .note-display
+          = note.to_s
+  - else
+    .nothing-to-display No notes for this document.
 .sidebar
   .sidebar-section
     .sidebar-title Document Info
@@ -17,10 +20,8 @@
       .glyphicon.glyphicon-tags
       ="Tags"
     .sidebar-content
-      .tag-lists= tags_to_links(@document.tags)
+      .tag-lists= tags_to_links(@document.organization, @document.tags)
     .sidebar-content-label Organization:
     .sidebar-content= "#{@organization.name}"
     .sidebar-content-label Orignally Uploaded by:
     .sidebar-content= "#{@document.user.name}"
-  = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

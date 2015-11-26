@@ -1,8 +1,8 @@
 require 'pdf/reader'
 
 module DocumentsHelper
-  def tags_to_links(tags)
-    tags.map { |t| link_to t, tag_path(t.id) }.join(', ').html_safe
+  def tags_to_links(organization, tags)
+    tags.map { |t| link_to t, organization_documents_path(organization, :search => t.name) }.join(', ').html_safe
   end
 
   def feeds_to_links(user)

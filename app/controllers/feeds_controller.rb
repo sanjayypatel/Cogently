@@ -31,7 +31,18 @@ class FeedsController < ApplicationController
     @feed = Feed.find(params[:id])
     @user = @feed.user
     @organization = @user.organization
-    @documents = @organization.documents.tagged_with(@feed.tag)
+    @documents = @organization.search_documents(@feed.tag)
+  end
+
+  def destroy
+    @feed = Feed.find(params[:id])
+    @user = @feed.user
+    if @feed.destroy
+      flash[:notice] = "You're no longer following \'#{@feed.tag}\'"
+    else
+      flash[:error] = "There was an error deleting feed."
+    end
+    redirect_to :back
   end
 
   private
@@ -39,4 +50,5 @@ class FeedsController < ApplicationController
   def feed_params
     params.require(:feed).permit(:tag, :user_id)
   end
+
 end
