@@ -1,0 +1,15 @@
+.main-content
+  .content-title Create a new Organization
+  %ul
+    %li.content-text Create a new organization that you can invite other users to join.  Any members of the same organization can upload documents visible to all other members of that organization. 
+    %li.content-text When creating a new organization, you will automatically be the moderator for that group. Only the moderator user can invite other users, edit user roles, and change organization information.
+    %li.content-text If you want to assign another user as the moderator, that user will need to first accept an invitation to your organization.  Then, you can assign a new moderator from the Edit Organization page, accessible from the sidebar.
+  = form_for Organization.new do |f|
+    .form-section
+      = f.label :name
+      = f.text_field :name, autofocus: true, class: 'enter-text'
+    .form-section
+      = f.hidden_field :moderator_id, value: current_user.id
+      = f.submit "Create new organization", class: 'submit-form'
+.sidebar
+  = render partial: 'users/info', locals: {user: current_user}
