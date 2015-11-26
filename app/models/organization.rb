@@ -10,7 +10,8 @@ class Organization < ActiveRecord::Base
 
   def search_for_invitable_users(query)
     members_and_invitees = self.users.to_a + self.invitees.to_a
-    User.where("email like ?", "%#{query}%").to_a - members_and_invitees
+    found_users = User.where("email like ?", "%#{query}%").to_a - members_and_invitees
+    return found_users.select {|user| user.moderated_organization.nil?}
   end
 
   def search_members(query)

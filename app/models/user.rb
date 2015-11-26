@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_one :membership
   has_one :organization, through: :membership
+  has_one :moderated_organization, class_name: 'Organization', foreign_key: 'moderator_id'
   belongs_to :invited_organization, class_name: 'Organization', foreign_key: 'invited_organization_id'
   has_many :documents
   has_many :feeds

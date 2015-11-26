@@ -8,10 +8,11 @@
         .sidebar-content-label= "Moderator of #{user.organization.name}"
       - else
         .sidebar-content-label= "Member of #{user.organization.name}"
-      = link_to "View", organization_path(user.organization)
       - if policy(user.organization).edit?
-        ,
-        = link_to "Edit", edit_organization_path(user.organization)
+        = link_to "View", edit_organization_path(user.organization)
+      - else
+        = link_to "View", organization_path(user.organization)
+      .sidebar-content= link_to "Change membership", new_organization_path
     .sidebar-section
       .sidebar-content-label Role
       .sidebar-content= user.role.capitalize
