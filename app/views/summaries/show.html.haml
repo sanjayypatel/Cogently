@@ -17,8 +17,7 @@
     .sidebar-content= link_to 'View Original', @document.file.url
     .sidebar-content= link_to 'Edit Document', edit_organization_document_path(@organization, @document)
     .sidebar-content-label
-      .glyphicon.glyphicon-tags
-      ="Tags"
+      = fa_icon "tags", text: "Tags"
     .sidebar-content
       .tag-lists= tags_to_links(@document.organization, @document.tags)
     .sidebar-content-label Organization:
