@@ -15,9 +15,15 @@
     .sidebar-section
       .sidebar-content-label Role
       .sidebar-content= user.role.capitalize
+  - else
     .sidebar-section
-      .sidebar-content-label Email
-      .sidebar-content= user.email
+      .sidebar-content-label Not a member of an organization
+      .sidebar-content
+        Contact your groups moderator and request an invite or 
+        = link_to 'start your own organization.', new_organization_path
+  .sidebar-section
+    .sidebar-content-label Email
+    .sidebar-content= user.email
   - if user.is_confirmed_member?
     .sidebar-section
       .sidebar-content-label Followed Topics

@@ -7,7 +7,7 @@
     =render partial: 'events/panel', locals: {event: @next_event}
     .show-all-events= link_to "Show All Events", organization_events_path(current_user.organization)
   .content-title My Feed
-  - if @feed_items.count > 0
+  - if @feed_items && @feed_items.count > 0
     .color-sorted
       - @feed_items.each do |item|
         - if is_document?(item)

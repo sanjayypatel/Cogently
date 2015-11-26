@@ -141,10 +141,11 @@ end
 
 #Seed Feeds
 tags = ActsAsTaggableOn::Tag.all
-tags.each_with_index do |tag, index|
+users = User.all
+users.each_with_index do |user, index|
   feed = Feed.new(
-    tag: tag.name,
-    user: User.find(1)
+    tag: tags.sample.name,
+    user: user
   )
   feed.save!
 end

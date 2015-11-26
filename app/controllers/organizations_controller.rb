@@ -1,5 +1,27 @@
 class OrganizationsController < ApplicationController
 
+  def new
+    @organization = Organization.new
+    authorize @organization
+  end
+
+  def create
+    @organization = Organization.new(organization_params)
+    authorize @organization
+    if @organization.save
+      @membership = Membership.new(
+        organization: @organization,
+        user: current_user
+      )
+      @membership.save
+      flash[:notice] = "Organization created."
+      redirect_to organization_path(@organization)
+    else
+      flash[:error] = "There was an error creating organization. Try again."
+      render :new
+    end
+  end
+
   def show
     @organization = Organization.find(params[:id])
     authorize @organization

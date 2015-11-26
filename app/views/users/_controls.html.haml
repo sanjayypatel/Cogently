@@ -21,6 +21,10 @@
         = link_to user_feeds_path(user), class: 'button-styles' do
           = fa_icon "heart"
           Topics
+      - else
+        = link_to new_organization_path, class: 'button-styles-new' do
+          = fa_icon "users"
+          Create a new organization
   .control-bar-search
     - if user.is_confirmed_member?
       = form_tag organization_documents_path(user.organization), method: "get" do
