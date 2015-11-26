@@ -34,6 +34,17 @@ class FeedsController < ApplicationController
     @documents = @organization.search_documents(@feed.tag)
   end
 
+  def destroy
+    @feed = Feed.find(params[:id])
+    @user = @feed.user
+    if @feed.destroy
+      flash[:notice] = "You're no longer following \'#{@feed.tag}\'"
+    else
+      flash[:error] = "There was an error deleting feed."
+    end
+    redirect_to :back
+  end
+
   private
 
   def feed_params

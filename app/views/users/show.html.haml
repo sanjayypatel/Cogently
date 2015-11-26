@@ -1,14 +1,13 @@
 .main-content
   - if current_user.has_pending_invitation?
     = render partial: 'organizations/notice', locals: {membership: @membership, invited_organization: @invited_organization }
-  = render partial: 'users/controls', locals: {user: current_user}
   - if @next_event
     .content-title
       = "My Next Event"
     =render partial: 'events/panel', locals: {event: @next_event}
     .show-all-events= link_to "Show All Events", organization_events_path(current_user.organization)
   .content-title My Feed
-  - if @feed_items
+  - if @feed_items.count > 0
     .color-sorted
       - @feed_items.each do |item|
         - if is_document?(item)
@@ -17,6 +16,7 @@
         - else
           .event-panel
             =render partial: 'events/panel', locals: {event: item}
+  - else
+    .nothing-to-display No items in your feed.
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

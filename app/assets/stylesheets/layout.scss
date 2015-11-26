@@ -53,6 +53,9 @@ body {
   @extend .col-md-6;
   @extend .col-md-offset-3;
 }
+.centered-content-full {
+  @extend .col-md-12;
+}
 .content-title {
   font-size: 5rem;
   padding-bottom: 2rem;
@@ -96,6 +99,13 @@ body {
 
 .sidebar-content-label {
   font-weight: bold;
+}
+
+.nothing-to-display {
+  font-size: 2rem;
+  color: darkgrey;
+  font-style: italic;
+  margin-top: 2rem;
 }
 
 /******************************
@@ -372,7 +382,7 @@ body {
     }
 
     .month-year{
-      font-size: 2rem;
+      font-size: 3rem;
     }
   }
 
@@ -418,29 +428,30 @@ body {
 }
 
 /******************************
-  Calendar Elements 
+  Control Bar Elements 
 ******************************/
 .control-bar {
-  @extend .btn-group;
+  @extend .row;
+  margin-bottom: 2rem;
 }
-.control-bar-button {
-  @extend .col-lg-2;
+.control-bar-toolbar {
+  @extend .col-md-8;
+}
+.control-bar-search {
+  @extend .col-md-4;
+}
+.control-bar-button-group {
+  @extend .btn-group;
+  @extend .btn-group-justified;
 }
 .button-styles {
   @extend .btn;
-  @extend .btn-lg;
   @extend .btn-default;
-  padding: 2rem;
 }
 .button-styles-new {
   @extend .btn;
-  @extend .btn-lg;
   @extend .btn-info;
-  padding: 2rem;
 }
 .button-icon {
-  font-size: 2rem;
-}
-.button-text {
   font-size: 1.5rem;
 }

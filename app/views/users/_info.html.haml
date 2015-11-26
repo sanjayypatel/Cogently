@@ -1,22 +1,29 @@
 .sidebar-section
   .sidebar-title
-    = "User Info, "
+    = "#{user.name}, "
     = link_to "Edit", edit_user_registration_path(user)
   - if user.is_confirmed_member?
     .sidebar-section
-      .sidebar-content-label Member of
-      .sidebar-content= "#{user.organization.name}"
-      .sidebar-content= link_to "Organization Profile", organization_path(user.organization)
       - if policy(user.organization).edit?
-        .sidebar-section
-          .sidebar-content= link_to "Edit Organization", edit_organization_path(user.organization)
-  .sidebar-section
-    .sidebar-content-label User Name
-    .sidebar-content= user.name
-  .sidebar-section
-    .sidebar-content-label Email
-    .sidebar-content= user.email
-  - if user.is_confirmed_member? && user.feeds.count > 0
+        .sidebar-content-label= "Moderator of #{user.organization.name}"
+      - else
+        .sidebar-content-label= "Member of #{user.organization.name}"
+      = link_to "View", organization_path(user.organization)
+      - if policy(user.organization).edit?
+        ,
+        = link_to "Edit", edit_organization_path(user.organization)
+    .sidebar-section
+      .sidebar-content-label Role
+      .sidebar-content= user.role.capitalize
+    .sidebar-section
+      .sidebar-content-label Email
+      .sidebar-content= user.email
+  - if user.is_confirmed_member?
     .sidebar-section
       .sidebar-content-label Followed Topics
-      .sidebar-content= feeds_to_links(user)
+      - if user.feeds.count > 0
+        .sidebar-content= feeds_to_links(user)
+      - else
+        .sidebar-section
+          .sidebar-content
+            = "It looks like you haven't followed any topics yet. Get started by searching for a topic and then click the \'Follow this topic\' button."

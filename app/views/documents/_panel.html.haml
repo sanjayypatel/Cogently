@@ -8,7 +8,9 @@
     = ', '
     = link_to 'Edit Document', edit_organization_document_path(document.organization, document)
     = ', '
-    =link_to 'View Original', document.file.url
+    = link_to 'View Summary', document_summary_path(document, document.summary)
+    = ', '
+    = link_to 'View Original', document.file.url
   .panel-title About
   .panel-text= "Uploaded by #{document.user.name} on #{document.created_at.strftime("%m/%d/%Y %H:%M %p")}"
   .panel-text= "Last updated on #{document.updated_at.strftime("%m/%d/%Y %H:%M %p")}"

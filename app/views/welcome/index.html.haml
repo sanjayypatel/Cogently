@@ -4,4 +4,3 @@
 .sidebar
   - if user_signed_in?
     = render partial: 'users/info', locals: {user: current_user}
-    = render partial: 'users/options', locals: {user: current_user}

@@ -1,11 +1,7 @@
-.main-content
-  = render partial: 'users/controls', locals: {user: current_user}
+.centered-content-full
   =month_calendar events: @events do |date, events|
     - capture_haml do
       = date.day
       .event-list
         - events.each do |event|
           = link_to event.title, organization_event_path(@organization, event), class: 'event-button'
-.sidebar
-  = render partial: 'users/info', locals: {user: current_user}
-  = render partial: 'users/options', locals: {user: current_user}

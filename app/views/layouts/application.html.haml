@@ -20,11 +20,12 @@
         %ul.navigation-right
           - if user_signed_in?
             %li= link_to (current_user.name || current_user.email), user_path(current_user)
-            %li= link_to "My Group", organization_path(current_user.organization)
             %li= link_to "Sign Out", destroy_user_session_path, method: :delete
           - else
             %li= link_to "Sign In", new_user_session_path
             %li= link_to "Sign Up", new_user_registration_path
+      - if user_signed_in?
+        = render partial: 'users/controls', locals: {user: current_user}
       - if flash[:notice]
         .alert.alert-success
           %button.close{"data-dismiss" => "alert", :type => "button"} &times;
