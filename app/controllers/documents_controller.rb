@@ -28,6 +28,11 @@ class DocumentsController < ApplicationController
     if @document.save
       @document.content = @document.process_new_document(reader.to_html)
       @document.save
+      @summary = Summary.new(
+        body: '',
+        document: @document
+      )
+      @summary.save
       flash[:notice] = "Document uploaded"
     else
       flash[:error] = "Error uploading document"

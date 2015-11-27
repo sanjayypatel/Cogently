@@ -1,5 +1,5 @@
 .main-content
-  .content-title Edit Organization
+  .content-title= "#{@organization.name}"
   .profile-section
     .content-header Organization Info
     = form_for @organization do |f|
@@ -56,8 +56,9 @@
           = f.hidden_field :invited_organization_id, value: @organization.id
           = f.submit "Invite", class: 'invite-user'
       %br
-    %p Didn't find who you're looking for? Invite them to join Cogently:
-    = link_to "Invite", new_user_invitation_path, class: 'invite-user'
+    %p
+      Didn't find who you're looking for? 
+      = link_to "Invite them to join Cogently.", new_user_invitation_path\
     %br
   = render partial: 'memberships/search', locals: {organization: @organization}
   = render partial: 'users/info', locals: {user: current_user}

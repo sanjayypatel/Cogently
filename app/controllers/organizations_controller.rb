@@ -9,13 +9,18 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
     authorize @organization
     if @organization.save
-      @membership = Membership.new(
-        organization: @organization,
-        user: current_user
-      )
-      @membership.save
+      @membership = current_user.membership
+      if @membership.nil?
+        @membership = Membership.new(
+          organization: @organization,
+          user: current_user
+        )
+        @membership.save
+      else
+        @membership.update_attribute(:organization, @organization)
+      end
       flash[:notice] = "Organization created."
-      redirect_to organization_path(@organization)
+      redirect_to edit_organization_path(@organization)
     else
       flash[:error] = "There was an error creating organization. Try again."
       render :new

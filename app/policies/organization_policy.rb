@@ -1,11 +1,11 @@
 class OrganizationPolicy < ApplicationPolicy
 
   def new?
-    !user.is_confirmed_member?
+    !user.nil?
   end
 
   def create?
-    new?
+    user.moderated_organization.nil?
   end
 
   def show?
