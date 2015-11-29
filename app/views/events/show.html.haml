@@ -1,22 +1,30 @@
 .main-content
   .content-title= "#{@event.title} Documents"
-  - @summaries.each do |summary|
-    =render partial: 'summaries/panel', locals: {summary: summary}
+  - if @summaries.count > 0
+    - @summaries.each do |summary|
+      =render partial: 'summaries/panel', locals: {summary: summary}
+  - else
+    .nothing-to-display There are no documents added to this event.
 .sidebar
   =render partial: 'events/info', locals: {event: @event}
   .sidebar-section
     .sidebar-title
-      = 'Attendees, '
-      = link_to 'Edit', edit_organization_event_path(@organization, @event)
-    .table-header
-      .col-md-3
-        .sidebar-content-label= 'Name'
-      .col-md-6
-        .sidebar-content-label= 'Email'
-    - @attendees.each do |attendee|
-      .table-row
-        .small-table-col
-          = "#{attendee.name}"
+      = 'Attendees'
+    - if @attendees.count > 0
+      .sidebar-table-header
+        .medium-table-col
+          .sidebar-content-label= 'Name'
         .large-table-col
-          = "#{attendee.email}"
-  = render partial: 'users/info', locals: {user: current_user}
+          .sidebar-content-label= 'Email'
+      - @attendees.each do |attendee|
+        .sidebar-table-row
+          .medium-table-col
+            = "#{attendee.name}"
+          .large-table-col
+            = "#{attendee.email}"
+    - else
+      .nothing-to-display There are no users attending this event.
+  .sidebar-title Add Attendees
+  = render partial: 'memberships/attendance', locals: {organization: @organization, event: @event }
+  .sidebar-title Add Documents
+  = render partial: 'summaries/search', locals: {organization: @organization, event: @event }

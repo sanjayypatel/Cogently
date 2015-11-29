@@ -4,4 +4,7 @@
       = date.day
       .event-list
         - events.each do |event|
-          = link_to event.title, organization_event_path(@organization, event), class: 'event-button'
+          - if event.attended_by?(current_user)
+            = link_to event.title, organization_event_path(@organization, event), class: 'attended-event-button'
+          - else
+            = link_to event.title, organization_event_path(@organization, event), class: 'event-button'

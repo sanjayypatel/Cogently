@@ -32,6 +32,7 @@ class EventsController < ApplicationController
     @organization = Organization.find(params[:organization_id])
     @event = Event.find(params[:id])
     @attendees = @event.users
+    @summaries = @event.summaries
     if params[:search]
       @found_users = @organization.search_members(params[:search]) - @event.users.to_a
       @query = params[:search]
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @user = User.find(params[:event][:user_id])
     @event.users << @user
-    redirect_to organization_event_path(@organization, @event)
+    redirect_to edit_organization_event_path(@organization, @event)
   end
 
   def add_reference
@@ -65,7 +66,23 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @summary = Summary.find(params[:event][:summary_id])
     @event.summaries << @summary
-    redirect_to organization_event_path(@organization, @event)
+    redirect_to edit_organization_event_path(@organization, @event)
+  end
+
+  def remove_attendee
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:id])
+    @user = User.find(params[:event][:user_id])
+    @event.users.delete(@user)
+    redirect_to edit_organization_event_path(@organization, @event)
+  end
+
+  def remove_reference
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.find(params[:id])
+    @summary = Summary.find(params[:event][:summary_id])
+    @event.summaries.delete(@summary)
+    redirect_to edit_organization_event_path(@organization, @event)
   end
 
   def event_params

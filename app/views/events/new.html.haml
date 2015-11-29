@@ -11,3 +11,4 @@
       = f.hidden_field :organization_id, value: @organization.id
       = f.submit 'Save', class: 'submit-form'
 .sidebar
+  = render partial: 'users/info', locals: {user: current_user}
