@@ -463,7 +463,7 @@ body {
 
 .attended-event-button {
   @extend .event-button;
-  @extend .btn-info;
+  @extend .btn-success;
 }
 
 .event-header {

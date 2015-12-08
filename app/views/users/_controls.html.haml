@@ -2,10 +2,10 @@
   .control-bar-toolbar
     .control-bar-button-group
       - if user.is_confirmed_member?
-        = link_to new_organization_document_path(user.organization), class: 'button-styles-new' do
+        = link_to new_organization_document_path(user.organization), class: 'button-styles' do
           = fa_icon "file-pdf-o"
           New Doc
-        = link_to new_organization_event_path(user.organization), class: 'button-styles-new' do
+        = link_to new_organization_event_path(user.organization), class: 'button-styles' do
           = fa_icon "calendar-plus-o"
           New Event
       = link_to user_path(user), class: 'button-styles' do

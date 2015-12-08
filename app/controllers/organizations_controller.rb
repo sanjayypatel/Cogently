@@ -17,7 +17,16 @@ class OrganizationsController < ApplicationController
         )
         @membership.save
       else
+        @old_organization = @membership.organization
         @membership.update_attribute(:organization, @organization)
+        @events = current_user.events
+        @events.each do |event|
+          event.users.delete(current_user)
+        end
+        @documents = current_user.documents
+        @documents.each do |document|
+          document.update_attribute(:user, @old_organization.moderator)
+        end
       end
       flash[:notice] = "Organization created."
       redirect_to edit_organization_path(@organization)
