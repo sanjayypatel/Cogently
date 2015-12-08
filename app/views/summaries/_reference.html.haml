@@ -2,6 +2,10 @@
   .panel-header
     = fa_icon "file-pdf-o"
     = "#{summary.document.name} Summary"
+    .float-right
+      = form_for [@organization, @event], url: remove_reference_path, method: :patch do |f|
+        = f.hidden_field :summary_id, value: summary.id
+        = f.submit "Remove document from event", class: 'remove-attendee-button'
   .panel-links
     = link_to 'View Document', organization_document_path(summary.document.organization, summary.document)
     = ', '

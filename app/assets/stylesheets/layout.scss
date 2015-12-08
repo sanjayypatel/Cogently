@@ -122,9 +122,17 @@ body {
   border-bottom: 1px lightgrey solid;
   margin-bottom: 10px;;
 }
-
+.sidebar-table-header {
+  @extend .table-header;
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+}
 .small-table-col {
   @extend .col-md-3;
+}
+
+.medium-table-col {
+  @extend .col-md-4;
 }
 
 .large-table-col {
@@ -134,6 +142,11 @@ body {
 .table-row {
   @extend .row;
   padding: 15px 0;
+}
+.sidebar-table-row {
+  @extend .table-row;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .table-row:nth-child(odd) {
@@ -369,6 +382,24 @@ body {
   float: right;
 }
 
+.found-user-form {
+  margin-bottom: 5px;
+}
+
+.remove-attendee-button {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-default;
+}
+
+.remove-reference-button {
+  @extend .remove-attendee-button;
+}
+
+.float-right {
+  float: right;
+  margin-right: 0.5rem;
+}
 
 /******************************
   Calendar Elements 
@@ -426,8 +457,13 @@ body {
 .event-button{
   @extend .btn;
   @extend .btn-sm;
-  @extend .btn-info;
-  margin-bottom: 2px;
+  @extend .btn-default;
+  margin-bottom: 5px;
+}
+
+.attended-event-button {
+  @extend .event-button;
+  @extend .btn-success;
 }
 
 .event-header {
