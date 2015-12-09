@@ -23,7 +23,7 @@ class DocumentsController < ApplicationController
     @organization = current_user.organization
     @document = @organization.documents.build(document_params)
     @organization.tag(@document, on: :tags, with: params[:document][:tag_list])
-    io = open(@document.path_to_file)
+    io = open(@document.file.url)
     reader = PDF::Reader.new(io)
     if @document.save
       @document.content = @document.process_new_document(reader.to_html)
@@ -61,7 +61,7 @@ class DocumentsController < ApplicationController
   def show
     @document = Document.find(params[:id])
     @organization = @document.organization
-    io = open(@document.path_to_file)
+    io = open(@document.file.url)
     @reader = PDF::Reader.new(io)
     @paragraphs = @document.paragraphs
     @document.summary.nil? ? @summary = Summary.new : @summary = @document.summary
