@@ -2,7 +2,7 @@ class Organization < ActiveRecord::Base
   has_many :memberships
   has_many :users, through: :memberships
   has_many :invitees, class_name: "User", foreign_key: "invited_organization_id"
-  belongs_to :moderator, class_name: "User", foreign_key: "moderator_id"
+  belongs_to :moderator, class_name: "User"
   has_many :documents
   has_many :summaries, :through => :documents
   has_many :events
