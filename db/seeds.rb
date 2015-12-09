@@ -77,14 +77,14 @@ end
 
 #Seed Documents and summaries
 
-5.times do |n|
+1.times do |n|
   document = Document.new(
     name: "document#{n + 1}",
     user: first_user,
     organization: first_organization
   )
   document.file.store!(File.open(File.join(Rails.root, 'test/fixtures/test.pdf')))
-  io = open(document.path_to_file)
+  io = open(document.file.url)
   reader = PDF::Reader.new(io)
   document.content = document.process_new_document(reader.to_html)
   document.save!
@@ -96,14 +96,14 @@ end
   summary.save!
 end
 
-5.times do |n|
+1.times do |n|
   document = Document.new(
     name: "document#{n + 6}",
     user: second_user,
     organization: second_organization
   )
   document.file.store!(File.open(File.join(Rails.root, 'test/fixtures/test.pdf')))
-  io = open(document.path_to_file)
+  io = open(document.file.url)
   reader = PDF::Reader.new(io)
   document.content = document.process_new_document(reader.to_html)
   document.save!

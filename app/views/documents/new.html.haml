@@ -7,6 +7,7 @@
     .form-section
       = f.label :file, 'Choose a pdf file to upload'
       = f.file_field :file
+      = f.hidden_field :file_cache
     .form-section
       = f.label :tag_list, "Tags (separated by commas)"
       = f.text_field :tag_list, class: 'form-control', autocomplete: :off

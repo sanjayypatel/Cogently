@@ -66,6 +66,7 @@ gem 'faker'
 gem 'pundit'
 
 gem 'carrierwave'
+gem 'fog'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 
