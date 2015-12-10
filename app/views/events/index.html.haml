@@ -1,7 +1,7 @@
 .centered-content-full
   =month_calendar events: @events do |date, events|
     - capture_haml do
-      = date.to_datetime.day
+      = date.day
       .event-list
         - events.each do |event|
           - if event.attended_by?(current_user)
