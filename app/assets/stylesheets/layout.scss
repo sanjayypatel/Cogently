@@ -56,6 +56,10 @@ body {
 .centered-content-full {
   @extend .col-md-12;
 }
+.centered-content-main {
+  @extend .col-md-10;
+  @extend .col-md-offset-1;
+}
 .content-title {
   font-size: 5rem;
   padding-bottom: 2rem;
@@ -71,6 +75,10 @@ body {
 .content-text {
   font-size: 1.5rem;
   padding-bottom: 0.5rem;
+}
+
+.centered-text{
+  text-align: center;
 }
 
 .moderator-header {
@@ -500,4 +508,32 @@ body {
 }
 .button-icon {
   font-size: 1.5rem;
+}
+
+/******************************
+  Tutorial Bar Elements 
+******************************/
+
+.tutorial-box {
+  background: #ddd;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 5px;
+}
+.tutorial-text {
+  font-size: 1.75rem;
+  color: #111;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/******************************
+  Root Page Layout Styles
+******************************/
+.main-page-billboard {
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+.main-page-column {
+  @extend .col-md-4;
 }

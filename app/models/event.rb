@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :organization
   has_and_belongs_to_many :users
   has_and_belongs_to_many :summaries
-  scope :starting_during, -> (time) { where("strftime('%m', start_time) = ?", time.strftime('%m')) }
+  scope :starting_during, -> (time) { where(start_time: time.beginning_of_month..time.end_of_month) }
 
   def attended_by?(user)
     return self.users.include?(user)

@@ -23,3 +23,12 @@
           = "#{member.role.capitalize}"
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
+  .sidebar-section
+    .tutorial-box
+      .tutorial-text 
+        = fa_icon "question"
+        Only the moderator can edit your organization's membership and user roles.
+      .tutorial-text
+        Manager users will be taken to their feed at login.
+      .tutorial-text
+        Staff users will be taken to the organization's document list at login.

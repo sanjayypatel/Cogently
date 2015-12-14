@@ -11,3 +11,9 @@
     .nothing-to-display You haven't followed any topics.
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
+  .sidebar-section
+    .tutorial-box
+      .tutorial-text 
+        = fa_icon "question"
+        Your followed topics are listed here.
+      .tutorial-text As users upload documents that are tagged with these topics, your feeds will be updated. 

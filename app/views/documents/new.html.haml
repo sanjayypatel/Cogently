@@ -17,3 +17,9 @@
       = f.submit 'Upload', class: 'submit-form'
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
+  .sidebar-section
+    .tutorial-box
+      .tutorial-text 
+        = fa_icon "question"
+        You can upload a pdf and add tags to make it easier to search for later.
+      .tutorial-text Cogently will extract the text from the pdf so that you can add notes to specific lines.
