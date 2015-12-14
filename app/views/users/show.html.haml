@@ -20,3 +20,8 @@
     .nothing-to-display No items in your feed.
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
+  .sidebar-section
+    .tutorial-box
+      .tutorial-text 
+        = fa_icon "question"
+        This is your feed. It will show you recently updated documents and upcoming events you're attending.

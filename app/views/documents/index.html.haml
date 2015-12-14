@@ -21,3 +21,9 @@
     .nothing-to-display No documents found.
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
+  .sidebar-section
+    .tutorial-box
+      .tutorial-text 
+        = fa_icon "question"
+        You can search for specific documents or tags at the top of the page.
+      .tutorial-text Then you can save those searches as 'Followed Topics.'

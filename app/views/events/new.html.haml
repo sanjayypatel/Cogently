@@ -12,3 +12,10 @@
       = f.submit 'Save', class: 'submit-form'
 .sidebar
   = render partial: 'users/info', locals: {user: current_user}
+  .sidebar-section
+    .tutorial-box
+      .tutorial-text 
+        = fa_icon "question"
+        After you create an event, you'll be able to add attendees and documents.
+      .tutorial-text Users who are attending an event will see the event in their user feed.
+      .tutorial-text Add documents to events to highlight relevant information for attendees.

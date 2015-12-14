@@ -1,6 +1,19 @@
-.main-content
-  .content-header Cogently
-  %p An executive summary app.
-.sidebar
-  - if user_signed_in?
-    = render partial: 'users/info', locals: {user: current_user}
+.centered-content-main
+  .main-page-billboard
+    .content-title Cogently
+    .content-subheader Cogently is an executive summary app, facilitating information flow within an organization.
+  .row
+    .main-page-column
+      .content-header.centered-text= fa_icon "upload"
+      .content-header.centered-text Ingest
+      .content-text Add all of your team members to the same organization on Cogently to start uploading and sharing documents.
+      .content-text Any member of your organization can add, edit, and download documents from your Cogently.
+    .main-page-column
+      .content-header.centered-text= fa_icon "pencil-square-o"
+      .content-header.centered-text Notate
+      .content-text Users can write in-line notes , add tags, and create summaries attached to each document.
+      .content-text Keep track of the topics most relevant to you by saving your searches as followed topics.
+    .main-page-column
+      .content-header.centered-text= fa_icon "forward"
+      .content-header.centered-text Distill
+      .content-text Your managers can get up to speed on new documents by reading staff notes and summaries attached as reading lists to events.
