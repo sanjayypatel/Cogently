@@ -18,9 +18,6 @@
         = link_to organization_events_path(user.organization), class: 'button-styles' do
           = fa_icon "calendar"
           Calendar
-        = link_to user_feeds_path(user), class: 'button-styles' do
-          = fa_icon "heart"
-          Topics
       - else
         = link_to new_organization_path, class: 'button-styles-new' do
           = fa_icon "users"

@@ -25,12 +25,3 @@
   .sidebar-section
     .sidebar-content-label Email
     .sidebar-content= user.email
-  - if user.is_confirmed_member?
-    .sidebar-section
-      .sidebar-content-label Followed Topics
-      - if user.feeds.count > 0
-        .sidebar-content= feeds_to_links(user)
-      - else
-        .sidebar-section
-          .sidebar-content
-            = "It looks like you haven't followed any topics yet. Get started by searching for a topic and then click the \'Follow this topic\' button."

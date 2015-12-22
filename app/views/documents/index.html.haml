@@ -3,16 +3,6 @@
     .content-title Documents
   - else
     .content-header= "Documents related to \'#{@query}\'"
-    - if !current_user.is_following?(@query)
-      = form_for [current_user, Feed.new] do |f|
-        = f.hidden_field :tag, value: @query
-        = f.hidden_field :user_id, value: current_user.id
-        = f.button class: 'create-feed' do
-          = fa_icon "heart", text: 'Follow this topic' 
-    - else
-      .content-subheader 
-        = 'You are currently following this topic.'
-        = link_to 'See your followed topics', user_feeds_path(current_user)
   - if @documents.count > 0
     .every-other
       - @documents.each do |document|
